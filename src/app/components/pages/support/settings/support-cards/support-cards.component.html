@@ -1,0 +1,46 @@
+<form [formGroup]="form" *ngIf="form; else spinner">
+  <div class="fields">
+    <h2>Cards</h2>
+
+    <div class="fields-wrapper">
+      <app-base-filter-template [text]="'Min reserving in cart (min)'">
+        <app-input [parentForm]="form" [controlName]="'minTimeInCart'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template [text]="'Max reserving in cart (min)'">
+        <app-input [parentForm]="form" [controlName]="'maxTimeInCart'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template [text]="'Max count cards in cart'">
+        <app-input [parentForm]="form" [controlName]="'maxCardsInCart'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template [text]="'Max cart amount, $'">
+        <app-input [parentForm]="form" [controlName]="'maxAmountInCart'"></app-input>
+      </app-base-filter-template>
+
+      <h2>Sell by user</h2>
+
+      <app-base-filter-template [text]="'Min amount of card, $'">
+        <app-input [parentForm]="form" [controlName]="'minimumRestForResale'"></app-input>
+      </app-base-filter-template>
+
+      <h2>Guarantee</h2>
+
+      <app-base-filter-template [text]="'Guarantee period (days)'">
+        <app-input [parentForm]="form" [controlName]="'mobileWarrantyDays'"></app-input>
+      </app-base-filter-template>
+    </div>
+
+  </div>
+  <div class="button">
+    <div class="button-place">
+      <app-button
+        [text]="'Save settings'"
+        [type]="buttonType.GREEN"
+        (clickEvent)="onSubmit()">
+      </app-button>
+    </div>
+  </div>
+</form>
+
+<ng-template #spinner>
+  <nz-spin class="spinner"></nz-spin>
+</ng-template>

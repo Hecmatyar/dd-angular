@@ -1,0 +1,100 @@
+<app-base-form-template [isLoading]="isLoading">
+  <ng-container content>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Guarantee days'"
+        [isError]="isInvalid('guaranteeDays')">
+        <app-input [parentForm]="form" [controlName]="'guaranteeDays'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Name'"
+        [isError]="isInvalid('name')">
+        <app-input [parentForm]="form" [controlName]="'name'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'Surname'"
+        [isError]="isInvalid('surname')">
+        <app-input [parentForm]="form" [controlName]="'surname'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'Company'"
+        [isError]="isInvalid('company')">
+        <app-input [parentForm]="form" [controlName]="'company'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'TAX-ID'"
+        [isError]="isInvalid('taxId')">
+        <app-input [parentForm]="form" [controlName]="'taxId'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'SSN'"
+        [isError]="isInvalid('ssn')">
+        <app-input [parentForm]="form" [controlName]="'ssn'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'W9'"
+        [isError]="isInvalid('w9')">
+        <app-input-file
+          [parentForm]="form"
+          [controlName]="'w9'"
+          [text]="vendor?.w9"
+          [accept]="'.pdf'"
+          [id]="'w9'">
+        </app-input-file>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'E-mail'"
+        [isError]="isInvalid('email')">
+        <app-input [parentForm]="form" [controlName]="'email'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Phone'"
+        [isError]="isInvalid('telephone')">
+        <app-input [parentForm]="form" [controlName]="'telephone'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'City'"
+        [isError]="isInvalid('city')">
+        <app-input [parentForm]="form" [controlName]="'city'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'Street'"
+        [isError]="isInvalid('street')">
+        <app-input [parentForm]="form" [controlName]="'street'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'State'"
+        [isError]="isInvalid('state')">
+        <app-input [parentForm]="form" [controlName]="'state'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'ZIP'"
+        [isError]="isInvalid('zip')">
+        <app-input [parentForm]="form" [controlName]="'zip'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <div class="span-4">
+        <app-base-filter-template
+          [text]="'Comment'">
+          <app-text-area [parentForm]="form" [controlName]="'commentText'"></app-text-area>
+        </app-base-filter-template>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container footer>
+    <app-form-footer-action [backPath]="backPath" (apply)="applyForm()"></app-form-footer-action>
+  </ng-container>
+</app-base-form-template>

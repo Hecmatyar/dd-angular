@@ -1,0 +1,5 @@
+<app-bulk-orders-form
+  [isLoading]="(order$ | async).isLoading"
+  [paymentItems]="(settingsPayment$ | async)"
+  [order]="(order$ | async).content">
+</app-bulk-orders-form>

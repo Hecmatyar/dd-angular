@@ -1,0 +1,13 @@
+label {
+  color: initial;
+  width: 100%;
+
+  select {
+    width: 100%;
+    outline: none;
+
+    &:disabled {
+      opacity: .5;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+<nz-table
+  class="expand-table"
+  [nzSize]="'small'"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="false"
+  [nzHideOnSinglePage]="false"
+  [nzData]="state?.items"
+  [nzTotal]="state?.totalItems"
+  [nzLoadingDelay]="0"
+  [nzLoading]="state?.isLoading"
+  [(nzPageIndex)]="paged.page"
+  [(nzPageSize)]="paged.pageSize"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)">
+  <thead nzSingleSort (nzSortChange)="onSort($event)">
+  <tr>
+    <th nzWidth="50px" nzLeft="0" *ngIf="detailCredential"></th>
+    <th nzShowSort [nzSortKey]="'fullName'">Full name</th>
+    <th nzShowSort [nzSortKey]="'company'">Company</th>
+    <th nzShowSort [nzSortKey]="'deniedPercent'">Denied %</th>
+    <th nzShowSort [nzSortKey]="'rejectedCount'">Rejected</th>
+    <th nzShowSort [nzSortKey]="'reliabilityPercent'">Reliability</th>
+    <th nzShowSort [nzSortKey]="'debt'">Debt</th>
+    <th nzShowSort [nzSortKey]="'purchasesCount'">Purchases</th>
+    <th nzShowSort [nzSortKey]="'purchasesSum'">Purchases $</th>
+    <th nzShowSort [nzSortKey]="'guaranteeDays'">Guarantee</th>
+    <th *ngIf="editCredential"></th>
+    <th *ngIf="banCredential"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of (state?.items || []); trackBy: trackByFn">
+    <tr [class.text-error]="item.banned">
+      <td *ngIf="detailCredential" nzShowExpand nzLeft="0" [nzExpand]="isCardExpanded(item.id)"
+          (nzExpandChange)="onExpandCard(item.id)"></td>
+      <td>{{item.fullName}}</td>
+      <td>{{item.company}}</td>
+      <td>{{item.deniedPercent}} %</td>
+      <td><a (click)="onCardsNavigate(item)">{{item.rejectedCount}} cards</a></td>
+      <td>{{item.reliabilityPercent}} %</td>
+      <td>{{item.debt}} %</td>
+      <td><a (click)="onOrdersNavigate(item)">{{item.purchasesCount}} orders</a></td>
+      <td>{{item.purchasesSum | number:'.2'}}</td>
+      <td>{{item.guaranteeDays}} days</td>
+      <td *ngIf="editCredential">
+        <app-edit-icon (click)="onEditNavigate(item.id)"></app-edit-icon>
+      </td>
+      <td *ngIf="banCredential">
+        <app-ban-icon *ngIf="!item.banned" (click)="onBlockUser(item)"></app-ban-icon>
+        <app-add-icon *ngIf="item.banned" (click)="updateUserBlock(item)"></app-add-icon>
+      </td>
+    </tr>
+
+    <tr [nzExpand]="isCardExpanded(item.id)" class="expand-row">
+      <td colspan="13">
+        <app-bulk-vendors-row-template
+          *ngIf="isCardExpanded(item.id) && detailCredential"
+          [data]="item">
+        </app-bulk-vendors-row-template>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</nz-table>

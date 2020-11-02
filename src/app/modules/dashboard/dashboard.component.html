@@ -1,0 +1,35 @@
+<nz-layout class="app">
+  <!-- Logo -->
+  <a class="app__logo" routerLink="/">
+    <img class="app__logo_image" src="../../../assets/images/logo.svg" alt="DiggiDeal">
+  </a>
+  <!-- /Logo -->
+
+  <!-- Header -->
+  <div class="menu-icon mobile-visible">
+    <div class="burger" [class.open]="isMenuOpen" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <app-logout class="desktop-visible"></app-logout>
+  <!-- /Header -->
+
+  <!-- Navigation -->
+  <div class="app__navigation" [class.open]="isMenuOpen">
+    <app-navigation>
+      <div class="app__logout mobile-visible">
+        <app-logout></app-logout>
+      </div>
+    </app-navigation>
+  </div>
+  <!-- /Navigation -->
+
+  <!-- Content -->
+  <nz-content class="app__content">
+    <router-outlet></router-outlet>
+  </nz-content>
+  <!-- /Content -->
+</nz-layout>

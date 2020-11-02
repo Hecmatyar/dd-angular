@@ -1,0 +1,20 @@
+<div class="bulk-orders dynamic-table">
+  <header class="dynamic-table__header">
+    <app-brands-filter
+      [brandCategory]="(brandsCategoryState$ | async).content">
+    </app-brands-filter>
+  </header>
+  <main class="dynamic-table__body">
+    <app-brands-table
+      [setTopCredential]="(setTopCredential$ | async)"
+      [editCredential]="(editCredential$ | async)"
+      [abilityCredential]="(abilityCredential$ | async)"
+      [state]="brandsState$ | async">
+    </app-brands-table>
+  </main>
+  <footer class="dynamic-table__footer">
+    <app-brands-create
+      [createCredential]="(createCredential$ | async)">
+    </app-brands-create>
+  </footer>
+</div>

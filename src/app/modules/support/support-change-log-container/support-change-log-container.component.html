@@ -1,0 +1,11 @@
+<div class="bulk-orders dynamic-table">
+  <header class="dynamic-table__header">
+    <app-support-change-log-filter  [state]="(state$ | async)"></app-support-change-log-filter>
+  </header>
+
+  <main class="dynamic-table__body main">
+    <app-support-change-log-table [state]="(state$ | async)">
+    </app-support-change-log-table>
+  </main>
+</div>
+

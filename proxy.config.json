@@ -1,0 +1,14 @@
+{
+  "/api/*": {
+    "target": "http://diggideal.dextechnology.com:17500",
+    "secure": false
+  },
+  "/swagger/*": {
+    "target": "http://diggideal.dextechnology.com:17500",
+    "secure": false
+  },
+  "/images/*": {
+    "target": "http://diggideal.dextechnology.com:17500",
+    "secure": false
+  }
+}

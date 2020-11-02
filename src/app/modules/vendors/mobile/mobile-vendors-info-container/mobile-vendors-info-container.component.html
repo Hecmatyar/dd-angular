@@ -1,0 +1,6 @@
+<app-mobile-vendors-form
+  [isEdit]="false"
+  [isLoading]="(vendor$ | async).isLoading"
+  [paymentItems]="(settingsPayment$ | async)"
+  [vendor]="(vendorContent$ | async)">
+</app-mobile-vendors-form>

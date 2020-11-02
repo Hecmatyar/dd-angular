@@ -1,0 +1,41 @@
+<div class="payment-methods-builder" [formGroup]="parentForm">
+  <div class="title">
+    <app-plus-icon (click)="onAddNew()" class="add-new"></app-plus-icon>
+    WITHDRAW METHODS
+  </div>
+  <ng-container [formArrayName]="controlName">
+    <ng-container *ngFor="let item of formArrayItems; let i = index">
+      <div class="base-line">
+        <app-nz-select
+          [items]="selectableItems"
+          [parentForm]="getFormGroup(selectArray.controls[i])"
+          [controlName]="'type'"
+          (selectValue)="update.emit()">
+        </app-nz-select>
+        <div class="remove" (click)="onRemove(i)">
+          <app-minus-icon></app-minus-icon>
+        </div>
+      </div>
+      <div class="base-line" *ngIf="getFormGroup(selectArray.controls[i]).get('type')?.value === paymentType.Bank">
+        <app-base-filter-template
+          [text]="'Method name'">
+          <app-input [parentForm]="getFormGroup(selectArray.controls[i])" [controlName]="'name'"></app-input>
+        </app-base-filter-template>
+        <app-base-filter-template
+          [text]="'Routing number (ABA)'">
+          <app-input [parentForm]="getFormGroup(selectArray.controls[i])" [controlName]="'routingNumber'"></app-input>
+        </app-base-filter-template>
+        <app-base-filter-template
+          [text]="'Account number'">
+          <app-input [parentForm]="getFormGroup(selectArray.controls[i])" [controlName]="'accountNumber'"></app-input>
+        </app-base-filter-template>
+      </div>
+      <div class="base-line" *ngIf="getFormGroup(selectArray.controls[i]).get('type')?.value === paymentType.Check">
+        <app-base-filter-template
+          [text]="'Method name'">
+          <app-input [parentForm]="getFormGroup(selectArray.controls[i])" [controlName]="'name'"></app-input>
+        </app-base-filter-template>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

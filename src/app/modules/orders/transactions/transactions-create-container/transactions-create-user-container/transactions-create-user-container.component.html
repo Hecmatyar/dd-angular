@@ -1,0 +1,5 @@
+<app-transactions-form-user
+  [isLoading]="(transactionTypes$ | async).isLoading || (addTransaction$ | async).isLoading"
+  [transactionTypes]="(transactionTypes$ | async).content">
+</app-transactions-form-user>
+

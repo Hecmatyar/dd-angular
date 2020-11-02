@@ -1,0 +1,6 @@
+<app-base-modal-template [isLoading]="isLoading">
+  <ng-container *ngFor="let propertyName of info">
+    <dt class="title">{{propertyName.id}}</dt>
+    <dd class="value">{{propertyName.name}}</dd>
+  </ng-container>
+</app-base-modal-template>

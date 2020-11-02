@@ -1,0 +1,127 @@
+<app-base-form-template [isLoading]="isLoading">
+  <ng-container content>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Type'">
+        <app-nz-select [parentForm]="form" [controlName]="'type'" [items]="partnersType"></app-nz-select>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Name'"
+        [isError]="isInvalid('name')">
+        <app-input [parentForm]="form" [controlName]="'name'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'Surname'"
+        [isError]="isInvalid('surname')">
+        <app-input [parentForm]="form" [controlName]="'surname'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'Company'">
+        <app-input [parentForm]="form" [controlName]="'company'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'TAX-ID (only for business)'"
+        [isError]="isInvalid('taxId')">
+        <app-input [parentForm]="form" [controlName]="'taxId'" [disabled]="true"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'SSN'"
+        [isError]="isInvalid('ssn')">
+        <app-input [parentForm]="form" [controlName]="'ssn'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'W9'"
+        [isError]="isInvalid('w9')">
+        <app-input-file
+          [parentForm]="form"
+          [controlName]="'w9'"
+          [text]="vendor?.w9"
+          [accept]="'.pdf'"
+          [id]="'w9'">
+        </app-input-file>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'E-mail'"
+        [isError]="isInvalid('email')">
+        <app-input [parentForm]="form" [controlName]="'email'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Phone'"
+        [isError]="isInvalid('telephone')">
+        <app-input [parentForm]="form" [controlName]="'telephone'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Id type'"
+        [isError]="isInvalid('idType')">
+        <app-input [parentForm]="form" [controlName]="'idType'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'Person ID'"
+        [isError]="isInvalid('personalId')">
+        <app-input [parentForm]="form" [controlName]="'personalId'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'City'"
+        [isError]="isInvalid('city')">
+        <app-input [parentForm]="form" [controlName]="'city'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'Street'"
+        [isError]="isInvalid('street')">
+        <app-input [parentForm]="form" [controlName]="'street'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'State'"
+        [isError]="isInvalid('state')">
+        <app-input [parentForm]="form" [controlName]="'state'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'ZIP'"
+        [isError]="isInvalid('zip')">
+        <app-input [parentForm]="form" [controlName]="'zip'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Last visit'"
+        [isError]="isInvalid('lastActivityUtc')">
+        <app-input [parentForm]="form" [controlName]="'lastActivityUtc'" [disabled]="true"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <div class="span-4">
+        <app-base-filter-template
+          [text]="'Comment'">
+          <app-text-area [parentForm]="form" [controlName]="'commentText'"></app-text-area>
+        </app-base-filter-template>
+      </div>
+    </div>
+
+    <hr>
+    <!--методы оплаты-->
+    <app-payment-methods-builder
+      [parentForm]="form"
+      [controlName]="'withdrawMethods'"
+      [selectableItems]="withdrawItems"
+      [emptyItem]="emptyMethod"
+      [selectArray]="selectPaymentMethod">
+    </app-payment-methods-builder>
+  </ng-container>
+  <ng-container footer>
+    <app-form-footer-action [backPath]="backPath" (apply)="applyForm()"></app-form-footer-action>
+  </ng-container>
+</app-base-form-template>

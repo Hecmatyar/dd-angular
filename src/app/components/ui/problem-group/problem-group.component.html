@@ -1,0 +1,11 @@
+<div
+  class="problem"
+  *ngFor="let problem of items; let i = index"
+>
+  <app-plus-icon *ngIf="!i" (click)="onProblemAdd()" class="icon"></app-plus-icon>
+  <app-minus-icon *ngIf="i" (click)="onProblemRemove(i)" class="icon"></app-minus-icon>
+  <label>
+    Problem #{{i + 1}}
+    <input nz-input [ngModel]="problem" (change)="changeValue($event, i)">
+  </label>
+</div>

@@ -1,0 +1,63 @@
+<form class="base-form" nz-form [formGroup]="form" *ngIf="form">
+  <app-base-filter-template
+    [text]="'Priority'">
+    <app-nz-select [parentForm]="form" [controlName]="'priority'" [items]="priorities"></app-nz-select>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Role'">
+    <app-nz-select [parentForm]="form" [controlName]="'role'" [items]="role"></app-nz-select>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Status'">
+    <app-nz-select [parentForm]="form" [controlName]="'status'" [items]="statuses"></app-nz-select>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Employee name'">
+    <app-employee-autocomplete [parentForm]="form" [controlName]="'employeeId'"></app-employee-autocomplete>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Number'">
+    <app-input [parentForm]="form" [controlName]="'number'"></app-input>
+  </app-base-filter-template>
+  <app-base-filter-template>
+
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Add date from'">
+    <app-date-picker
+      [parentForm]="form"
+      [controlName]="'dateFrom'"
+      [dateFormat]="'M/d/yy'"
+      [placeholder]="'from'"
+      [isFrom]="true"
+      [disableDateMode]="true"
+      [neighborDate]="form.get('dateTo').value">
+    </app-date-picker>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Add date to'">
+    <app-date-picker
+      [parentForm]="form"
+      [controlName]="'dateTo'"
+      [dateFormat]="'M/d/yy'"
+      [placeholder]="'to'"
+      [disableDateMode] = true
+      [neighborDate]="form.get('dateFrom').value">
+    </app-date-picker>
+  </app-base-filter-template>
+  <div class="bottom-place">
+    <app-button
+      [text]="'Clear'"
+      [type]="buttonType.BLUE"
+      (clickEvent)="clearFilter()">
+    </app-button>
+  </div>
+  <div class="bottom-place">
+    <app-button
+      [text]="'Apply'"
+      [type]="buttonType.GREEN"
+      (clickEvent)="applyFilter()">
+    </app-button>
+  </div>
+</form>
+

@@ -1,0 +1,38 @@
+.app-navigation {
+  background: linear-gradient(180deg, #30B9F5 81.22%, #16A5E3 100%);
+  overflow: auto;
+  min-height: 100%;
+
+  a {
+    user-select: none;
+  }
+}
+
+.app__user {
+  padding: 1rem .5rem 1rem 2rem;
+  color: #fff;
+  border-bottom: #FF6A92 1px solid;
+
+  &-name {
+    margin-bottom: .5rem;
+    font-size: .875rem;
+    font-weight: 300;
+  }
+
+  &-info {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+
+  &-label {
+    font-size: .875rem;
+    font-weight: 300;
+    margin-right: .5rem;
+  }
+
+  &-login {
+    margin-bottom: 0;
+    font-size: 1rem;
+  }
+}

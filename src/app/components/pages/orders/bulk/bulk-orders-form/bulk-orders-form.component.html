@@ -1,0 +1,58 @@
+<app-base-form-template [isLoading]="isLoading">
+  <ng-container content>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Vendor'">
+        <app-input [parentForm]="form" [controlName]="'vendor'" [disabled]="true"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'Warranty'">
+        <app-input [parentForm]="form" [controlName]="'warranty'" [disabled]="true"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'External id*'"
+        [isError]="form.get('externalId').dirty && !form.get('externalId').valid">
+        <app-input [parentForm]="form" [controlName]="'externalId'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Withdraw method*'"
+        [isError]="form.get('paymentMethodId').dirty && !form.get('paymentMethodId').valid">
+        <app-nz-select [parentForm]="form" [controlName]="'paymentMethodId'" [items]="paymentItems"></app-nz-select>
+      </app-base-filter-template>
+    </div>
+    <div class="builder">
+      <app-order-builder #orderBuilder [cards]="order?.cards || []"></app-order-builder>
+    </div>
+  </ng-container>
+  <ng-container footer>
+    <div class="footer">
+      <div class="load-csv">
+        <app-download-file
+          [title]="'CSV'"
+          [request]="loadCsv.bind(this)"
+          [name]="'bulk_order'"
+          [type]="'csv'"
+          [filter]="[]">
+        </app-download-file>
+      </div>
+      <div class="action">
+        <app-button
+          class="create"
+          [text]="'Create'"
+          [type]="buttonType.GREEN"
+          (clickEvent)="applyForm()">
+        </app-button>
+        <app-button
+          class="cancel"
+          [text]="'Cancel'"
+          [type]="buttonType.RED"
+          (clickEvent)="revertOrder()">
+        </app-button>
+      </div>
+    </div>
+  </ng-container>
+</app-base-form-template>

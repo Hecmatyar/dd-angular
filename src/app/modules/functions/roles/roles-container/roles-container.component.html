@@ -1,0 +1,11 @@
+<div class="cards dynamic-table">
+  <header class="dynamic-table__header" *ngIf="(manageCredential$ | async)">
+    <app-roles-filter></app-roles-filter>
+  </header>
+  <main class="dynamic-table__body">
+    <app-roles-table
+      [manageCredential]="(manageCredential$ | async)"
+      [state]="(rolesState$ | async)">
+    </app-roles-table>
+  </main>
+</div>

@@ -1,0 +1,43 @@
+.base-modal {
+  .anticon {
+    display: none;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 26px;
+    color: #828282;
+  }
+  div.ant-modal-confirm-content {
+    margin: 42px 0 !important;
+  }
+  .ng-star-inserted {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  div.ant-modal-confirm-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  button {
+    color: white;
+    width: 160px;
+  }
+  .ant-btn, & .ant-btn:hover, & .ant-btn:focus {
+    color: white;
+    border: 0;
+  }
+  .ant-btn-default, & .ant-btn-default:hover, & .ant-btn-default:focus {
+    background: #FF6A92;
+  }
+  .ant-btn-primary, & .ant-btn-primary:hover, & .ant-btn-primary:focus {
+    background: #34C15C;
+  }
+}
+.base-modal.alert {
+  div.ant-modal-confirm-btns {
+    justify-content: center;
+  }
+}
+

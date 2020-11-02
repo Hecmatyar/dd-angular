@@ -1,0 +1,85 @@
+<nz-spin [ngClass]="{'visible': isLoading}" class="spinner"></nz-spin>
+
+<nz-table
+  class="analytics-overview-table"
+  [nzTitle]="'Debit overview'"
+  [nzSize]="'small'"
+  [nzData]="[debitKeys]"
+  [nzShowPagination]="false">
+  <thead nzSingleSort (nzSortChange)="onSort($event, 'debit')">
+  <tr>
+    <th [nzSortKey]="">Debit transaction</th>
+    <th nzShowSort [nzSortKey]="'partners'">Partners</th>
+    <th nzShowSort [nzSortKey]="'bulkSales'">Bulk sales</th>
+    <th nzShowSort [nzSortKey]="'users'">Mobile app</th>
+    <th nzShowSort [nzSortKey]="'website'">Website</th>
+    <th nzShowSort [nzSortKey]="'transactionTotal'">Transaction total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let key of debitKeys">
+    <td>{{debit[key].lineHead}}</td>
+    <td [appPrice]="debit[key].partners" [key]="key">{{debit[key]?.partners}}</td>
+    <td [appPrice]="debit[key].bulkSales" [key]="key">{{debit[key]?.bulkSales}}</td>
+    <td [appPrice]="debit[key].users" [key]="key">{{debit[key]?.users}}</td>
+    <td [appPrice]="debit[key].website" [key]="key">{{debit[key]?.website}}</td>
+    <td class="bold" [appPrice]="debit[key].transactionTotal" [key]="key">{{debit[key]?.transactionTotal}}</td>
+  </tr>
+  </tbody>
+</nz-table>
+
+<nz-table
+  class="analytics-overview-table"
+  [nzTitle]="'Credit overview'"
+  [nzSize]="'small'"
+  [nzData]="[creditKeys]"
+  [nzShowPagination]="false">
+  <thead nzSingleSort (nzSortChange)="onSort($event, 'credit')">
+  <tr>
+    <th [nzSortKey]="">Credit transaction</th>
+    <th nzShowSort [nzSortKey]="'partners'">Partners</th>
+    <th nzShowSort [nzSortKey]="'bulkSales'">Bulk sales</th>
+    <th nzShowSort [nzSortKey]="'users'">Mobile app</th>
+    <th nzShowSort [nzSortKey]="'website'">Website</th>
+    <th nzShowSort [nzSortKey]="'transactionTotal'">Transaction total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let key of creditKeys">
+    <td>{{credit[key].lineHead}}</td>
+    <td [appPrice]="credit[key].partners" [key]="key">{{credit[key]?.partners}}</td>
+    <td [appPrice]="credit[key].bulkSales" [key]="key">{{credit[key]?.bulkSales}}</td>
+    <td [appPrice]="credit[key].users" [key]="key">{{credit[key]?.users}}</td>
+    <td [appPrice]="credit[key].website" [key]="key">{{credit[key]?.website}}</td>
+    <td class="bold" [appPrice]="credit[key].transactionTotal" [key]="key">{{credit[key]?.transactionTotal}}</td>
+  </tr>
+  </tbody>
+</nz-table>
+
+<nz-table
+  class="analytics-overview-table"
+  [nzTitle]="'Bonus overview'"
+  [nzSize]="'small'"
+  [nzData]="[bonusKeys]"
+  [nzShowPagination]="false">
+  <thead nzSingleSort (nzSortChange)="onSort($event, 'bonus')">
+  <tr>
+    <th [nzSortKey]="">Bonus program</th>
+    <th nzShowSort [nzSortKey]="'usersCount'">Users count</th>
+    <th nzShowSort [nzSortKey]="'transactionsCount'">Transaction count</th>
+    <th nzShowSort [nzSortKey]="'transactionalTotal'">Transaction total</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+ <tr *ngFor="let key of bonusKeys">
+    <td>{{bonus[key].lineHead}}</td>
+    <td>{{bonus[key].usersCount}}</td>
+    <td>{{bonus[key].transactionsCount}}</td>
+    <td class="bold" [appPrice]="bonus[key].transactionalTotal" [key]="'key'">{{bonus[key].transactionalTotal}}</td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
+</nz-table>

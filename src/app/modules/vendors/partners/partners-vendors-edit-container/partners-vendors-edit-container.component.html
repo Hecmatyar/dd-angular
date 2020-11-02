@@ -1,0 +1,6 @@
+<app-partners-vendors-form
+  (submitForm)="onSubmit($event)"
+  [isLoading]="(vendor$ | async).isLoading"
+  [partnersType]="partnersType"
+  [vendor]="(vendorContent$ | async)">
+</app-partners-vendors-form>

@@ -1,0 +1,82 @@
+<app-base-form-template [isLoading]="isLoading">
+  <ng-container header>
+    <app-horizontal-menu [menuItems]="menuItems"></app-horizontal-menu>
+  </ng-container>
+
+  <ng-container content>
+    <div class="base-line">
+      <app-base-filter-template
+        [isError]="isInvalid('vendorId')"
+        [text]="'Partner'">
+        <app-partners-vendor-autocomplete
+          [parentForm]="form"
+          [controlName]="'vendorId'">
+        </app-partners-vendor-autocomplete>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [isError]="isInvalid('orderNumber')"
+        [text]="'Order number'">
+        <app-input
+          [parentForm]="form"
+          [controlName]="'orderNumber'">
+        </app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [isError]="isInvalid('transactionType')"
+        [text]="'Transaction type'">
+        <app-input
+          [disabled]="true"
+          [parentForm]="form"
+          [controlName]="'transactionType'">
+        </app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [isError]="isInvalid('value')"
+        [text]="'Transaction value'">
+        <app-input
+          [disabled]="true"
+          [parentForm]="form"
+          [controlName]="'value'">
+        </app-input>
+      </app-base-filter-template>
+    </div>
+
+    <hr>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="''">
+        <label
+          class="include-debt"
+          nz-checkbox
+          [(ngModel)]="includeDebt">
+          Include Debt
+        </label>
+      </app-base-filter-template>
+    </div>
+    <div class="builder" *ngIf="includeDebt">
+      <app-transactions-order-builder
+        #orderBuilder
+        [isLoading]="isCardLoading"
+        [cards]="cards || []">
+      </app-transactions-order-builder>
+      <hr>
+      <div class="total">Total Payout: ${{form.get('value').value || 0}}</div>
+      <div class="total">Adjustment: ${{orderBuilder?.totalPaidUs || 0}}</div>
+      <div class="total">Total Paid: ${{totalPaid}}</div>
+    </div>
+  </ng-container>
+
+  <ng-container footer>
+    <app-form-footer-action
+      [backPath]="backPath"
+      (apply)="applyForm()"
+      [disabled]="totalPaid < 0">
+    </app-form-footer-action>
+  </ng-container>
+</app-base-form-template>

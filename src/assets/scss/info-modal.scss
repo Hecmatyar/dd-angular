@@ -1,0 +1,19 @@
+.info-modal {
+  display: grid;
+  grid-template-columns: 3fr 4fr;
+  padding: 10px 0 20px 0;
+
+  .title {
+    text-transform: uppercase;
+    color: #828282;
+  }
+
+  .value {
+    color: #000;
+    font-weight: normal;
+  }
+}
+
+.spinner {
+  padding: 20px 0 50px 0;
+}

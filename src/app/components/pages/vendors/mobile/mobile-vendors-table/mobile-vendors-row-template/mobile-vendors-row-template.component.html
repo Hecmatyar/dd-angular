@@ -1,0 +1,35 @@
+<div class="inner-detail">
+  <div class="th">TAX ID</div>
+  <div class="th">SSN</div>
+  <div class="th">W9</div>
+  <div class="th">E-MAIL</div>
+  <div class="th">PHONE</div>
+  <div class="th">ID TYPE</div>
+  <div class="th">PERSON ID</div>
+  <div></div>
+
+  <div class="td">{{data.detail.taxId || '-'}}</div>
+  <div class="td">{{data.detail.ssn || '-'}}</div>
+  <div class="td"><a (click)="onW9Load()">{{data.detail.w9}}</a></div>
+  <div class="td">{{data.detail.email || '-'}}</div>
+  <div class="td">{{data.detail.telephone || '-'}}</div>
+  <div class="td">{{data.idType || '-'}}</div>
+  <div class="td">{{data.personalId || '-'}}</div>
+  <div></div>
+
+  <div class="th">CITY</div>
+  <div class="th">STREET</div>
+  <div class="th">STATE</div>
+  <div class="th">ZIP</div>
+  <div class="th">LAST VISIT</div>
+  <div class="th span-3">COMMENT</div>
+
+  <div class="td">{{data.detail.city || '-'}}</div>
+  <div class="td">{{data.detail.street || '-'}}</div>
+  <div class="td">{{data.detail.state || '-'}}</div>
+  <div class="td">{{data.detail.zip || '-'}}</div>
+  <div class="td">{{data.detail.lastActivityUtc | date:'M/d/yy hh:m'}}</div>
+  <div class="td span-3">
+    <app-table-comment [data]="data.comment" (valueChange)="onChangeComment($event)"></app-table-comment>
+  </div>
+</div>

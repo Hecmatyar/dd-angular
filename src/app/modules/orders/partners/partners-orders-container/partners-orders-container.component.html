@@ -1,0 +1,15 @@
+<div class="bulk-orders dynamic-table">
+  <header class="dynamic-table__header">
+    <app-partners-orders-filter></app-partners-orders-filter>
+  </header>
+  <main class="dynamic-table__body">
+    <app-partners-orders-table
+      [detailCredential]="(detailCredential$ | async)"
+      [statusCredential]="(statusCredential$ | async)"
+      [state]="(partnerOrderState$ | async)">
+    </app-partners-orders-table>
+  </main>
+  <footer class="dynamic-table__footer">
+    <app-partners-orders-create [createOrderCredential]="(createCredential$ | async)"></app-partners-orders-create>
+  </footer>
+</div>

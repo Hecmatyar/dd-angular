@@ -1,0 +1,14 @@
+<div class="text-edit">
+  <div class="content" (dblclick)="toggleFormat()" *ngIf="!isEdit">
+    <ng-content></ng-content>
+  </div>
+  <div class="editable-content" *ngIf="isEdit">
+    <input
+      nz-input
+      [(ngModel)]="value"
+      placeholder=""
+      #field
+      (blur)="onChange(field.value)"
+      (keyup)="onKeyup($event)">
+  </div>
+</div>

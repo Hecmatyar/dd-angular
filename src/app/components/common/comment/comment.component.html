@@ -1,0 +1,5 @@
+<a class="feather icon-message-circle text-dark" *ngIf="comment?.text"
+   nz-popover
+   [nzTitle]="comment?.author"
+   [nzContent]="comment?.text">
+</a>

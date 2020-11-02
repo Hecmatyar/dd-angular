@@ -1,0 +1,12 @@
+.container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 25px;
+}
+textarea {
+  resize: none;
+}
+label {
+  font-size: 12px;
+  line-height: 14px;
+}

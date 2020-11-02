@@ -1,0 +1,19 @@
+<div class="select-group" [formGroup]="parentForm">
+  <div class="title">
+    <app-plus-icon (click)="onAddNew()" class="add-new"></app-plus-icon>
+    {{title}}
+  </div>
+  <ng-container [formArrayName]="controlName">
+    <div class="base-line" *ngFor="let item of formArrayItems; let i = index">
+      <app-nz-select
+        [items]="selectableItems"
+        [parentForm]="getFormGroup(selectArray.controls[i])"
+        [controlName]="'key'"
+        (selectValue)="update.emit()">
+      </app-nz-select>
+      <div class="remove" (click)="onRemove(i)">
+        <app-minus-icon></app-minus-icon>
+      </div>
+    </div>
+  </ng-container>
+</div>

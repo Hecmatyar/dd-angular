@@ -1,0 +1,7 @@
+<app-brands-form
+  (submitForm)="onSubmit($event)"
+  [isLoading]="(brand$ | async).isLoading || (brandsCategoryState$ | async).isLoading || (allBrandsState$ | async).isLoading"
+  [brandsCategory]="(brandsCategoryState$ | async).content"
+  [allBrands]="(allBrandsState$ | async).content"
+  [brand]="(brandContent$ | async)">
+</app-brands-form>

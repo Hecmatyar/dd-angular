@@ -1,0 +1,21 @@
+<div class="cards dynamic-table">
+  <header class="dynamic-table__header">
+    <app-cards-filter></app-cards-filter>
+  </header>
+  <main class="dynamic-table__body">
+    <app-cards-table
+      (selectedRows)="onChangeSelectedRow($event)"
+      [detailCredential]="(detailCredential$ | async)"
+      [statusCredential]="(statusCredential$ | async)"
+      [state]="cardState$ | async">
+    </app-cards-table>
+  </main>
+  <footer class="dynamic-table__footer">
+    <app-cards-export
+      [isLoading]="(ordersCreateBulkState$ | async).isLoading"
+      [vendorList]="(vendorNotBannedState$ | async)"
+      [createOrderCredential]="(createOrderCredential$ | async)"
+      [cards]="selectedList">
+    </app-cards-export>
+  </footer>
+</div>

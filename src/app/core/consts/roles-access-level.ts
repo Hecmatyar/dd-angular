@@ -1,0 +1,17 @@
+export const accessLevels = [
+  "cardAccessLevel",
+  "brandAccessLevel",
+  "employeeAccessLevel",
+  "rolesAccessLevel",
+  "userOrdersAccessLevel",
+  "bulkOrdersAccessLevel",
+  "partnersOrdersAccessLevel",
+  "userVendorsAccessLevel",
+  "bulkSalesVendorsAccessLevel",
+  "partnersSalesVendorsAccessLevel",
+  "transactionsAccessLevel",
+  "tasksAccessLevel",
+  "settingsAccessLevel",
+  "analyticsAccessLevel",
+  "auditAccessLevel",
+];

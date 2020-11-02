@@ -1,0 +1,34 @@
+<header class="row-header">
+  <a *ngIf="data.orderNumber" (click)="orderUserNavigate(data.orderNumber)" class="has-underline">View in user orders</a>
+  <a *ngIf="data.orderNumber" (click)="orderBulkNavigate(data.orderNumber)" class="has-underline">View in bulk orders</a>
+  <a *ngIf="data.orderNumber" (click)="orderPartnersNavigate(data.orderNumber)" class="has-underline">View in partners orders</a>
+</header>
+<nz-table [nzData]="[data]" [nzShowPagination]="false" class="row-table">
+  <thead>
+  <tr>
+    <th class="base-padding">type</th>
+    <th>last pay out</th>
+    <th>were paid us</th>
+    <th>profit</th>
+    <th>top % for this card</th>
+    <th width="400">comment</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="base-padding">{{data.detail.type}}</td>
+    <td>{{(data.detail.buyPrice | number:'.2') || ''}}</td>
+    <td>{{(data.detail.sellPrice | number:'.2') || ''}}</td>
+    <td>{{data.detail.profit | number:'.2'}}</td>
+    <td><a (click)="showConfirm()">{{data.detail.topCommissionSell || 'add'}}</a></td>
+    <td class="ws-init">
+      <app-table-comment [data]="data.comment" (valueChange)="onChangeComment($event)"></app-table-comment>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #modalContent>
+  <p>Set individual percent for card. <br>Accept this step.</p>
+  <input nz-input [(ngModel)]="innerTopCommission" class="commission-sell" placeholder="INDIVIDUAL %">
+</ng-template>

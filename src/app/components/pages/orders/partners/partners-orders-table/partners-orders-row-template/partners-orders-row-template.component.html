@@ -1,0 +1,34 @@
+<header class="row-header">
+  <a (click)="onTransactionsHistoryNavigate()" class="has-underline">View orders history</a>
+</header>
+<nz-table [nzData]="[data]" [nzShowPagination]="false" class="row-table">
+  <thead>
+  <tr>
+    <th class="base-padding">Total cards</th>
+    <th>Paid</th>
+    <th>Awaiting</th>
+    <th>Denied</th>
+    <th>Invoice</th>
+    <th width="400">comment</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="base-padding"><a (click)="onNavigate()">{{data.detail.totalCards}}</a></td>
+    <td><a (click)="onNavigate([cardStatus.Checked,
+    cardStatus.OnSale,
+    cardStatus.Active,
+    cardStatus.Used,
+    cardStatus.PartiallyUsed,
+    cardStatus.GuaranteeExpired])">
+      {{data.detail.paidCards}}
+    </a></td>
+    <td><a (click)="onNavigate([cardStatus.Loaded])">{{data.detail.awaitingCards}}</a></td>
+    <td><a (click)="onNavigate([cardStatus.Denied, cardStatus.Rejected])">{{data.detail.deniedCards}}</a></td>
+    <td><a (click)="onLoadInvoicePdf()">pdf</a></td>
+    <td class="ws-init">
+      <app-table-comment [data]="data.comment" (valueChange)="onChangeComment($event)"></app-table-comment>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

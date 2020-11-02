@@ -1,0 +1,53 @@
+<nz-table
+  class="no-expand-table"
+  [nzSize]="'small'"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="false"
+  [nzHideOnSinglePage]="false"
+  [nzData]="[state?.items]"
+  [nzLoading]="state?.isLoading"
+  [nzTotal]="state?.totalItems"
+  [nzLoadingDelay]="0"
+  [(nzPageIndex)]="paged.page"
+  [(nzPageSize)]="paged.pageSize"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)">
+  <thead nzSingleSort (nzSortChange)="onSort($event)">
+  <tr>
+    <th nzShowSort [nzSortKey]="'priority'">Priority</th>
+    <th nzShowSort [nzSortKey]="'status'">Status</th>
+    <th nzShowSort [nzSortKey]="'number'">Number</th>
+    <th [nzSortKey]="'employee'">Employee</th>
+    <th [nzSortKey]="'category'">Category</th>
+    <th nzShowSort [nzSortKey]="'author'">From</th>
+    <th nzShowSort [nzSortKey]="'date'">Add date</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of items">
+    <td>
+      <app-priority-icon class="icon {{item.priority}}"></app-priority-icon>
+      {{item.priority}}
+    </td>
+    <td>{{item.status}}</td>
+    <td>{{item.number}}</td>
+    <td>
+      <span *ngIf="item.employee;else addMe">{{item.employee}}</span>
+      <ng-template #addMe><span class="add-me" (click)="onAddMe($event, item.id)">ADD ME!</span></ng-template>
+    </td>
+    <td>{{item.category}}</td>
+    <td>{{item.author}}</td>
+    <td>{{item.date | date:'MM/dd/yy'}}</td>
+    <td>
+      <app-button
+        [disabled]="!item.canOpen"
+        [type]="buttonType.BLUE"
+        [text]="'Open'"
+        (click)="onButtonClick(item.id)"
+      ></app-button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+

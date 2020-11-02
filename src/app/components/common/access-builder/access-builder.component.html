@@ -1,0 +1,28 @@
+<div class="access-builder">
+  <div class="categories">
+    <div class="header">Categories</div>
+    <div class="item"
+         *ngFor="let category of categoryList"
+         [class.selected]="category === selectedCategory"
+         (click)="onSelectCategory(category)">
+      {{getCategoryName(category)}} {{getActiveSelect(category)}}
+    </div>
+  </div>
+  <div class="functions">
+    <div class="header">Functions</div>
+    <div class="item"
+         *ngFor="let func of functionList">
+      <label
+        nz-checkbox
+        [nzChecked]="isAccessLevelChecked(func) || isFunctionDisable(func)"
+        (nzCheckedChange)="updateSelectedAccessLevel(func)"
+        [nzDisabled]="isFunctionDisable(func)">
+        {{getFunctionName(func)}}
+      </label>
+    </div>
+  </div>
+
+  <div class="spinner" *ngIf="isLoading">
+    <nz-spin [nzSpinning]="isLoading"></nz-spin>
+  </div>
+</div>

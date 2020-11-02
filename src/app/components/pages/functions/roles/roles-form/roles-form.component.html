@@ -1,0 +1,22 @@
+<app-base-form-template [isLoading]="isLoading">
+  <ng-container content>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Name*'"
+        [isError]="form.get('name').dirty && !form.get('name').valid">
+        <app-input [parentForm]="form" [controlName]="'name'"></app-input>
+      </app-base-filter-template>
+    </div>
+
+    <app-access-builder
+      #accessBuilder
+      *ngIf="(accessLevelMap$ | async).content"
+      [accessLevelSelected]="selectedRoles"
+      [accessLevel]="(accessLevelMap$ | async).content">
+    </app-access-builder>
+  </ng-container>
+
+  <ng-container footer>
+    <app-form-footer-action [backPath]="backPath" (apply)="applyForm()"></app-form-footer-action>
+  </ng-container>
+</app-base-form-template>

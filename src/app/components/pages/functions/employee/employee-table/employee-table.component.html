@@ -1,0 +1,52 @@
+<nz-table
+  class="no-expand-table"
+  [nzSize]="'small'"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="false"
+  [nzHideOnSinglePage]="false"
+  [nzData]="state?.items"
+  [nzTotal]="state?.totalItems"
+  [nzLoadingDelay]="0"
+  [nzLoading]="state?.isLoading"
+  [(nzPageIndex)]="paged.page"
+  [(nzPageSize)]="paged.pageSize"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)">
+  <thead nzSingleSort (nzSortChange)="onSort($event)">
+  <tr>
+    <th nzShowSort [nzSortKey]="'login'">Login</th>
+    <th nzShowSort [nzSortKey]="'name'">Name</th>
+    <th nzShowSort [nzSortKey]="'lastName'">Last name</th>
+    <th nzShowSort [nzSortKey]="'phone'">Phone</th>
+    <th nzShowSort [nzSortKey]="'roles'">Roles</th>
+    <th nzShowSort [nzSortKey]="'additionalAccess'">Additional Functions</th>
+    <th nzShowSort [nzSortKey]="'status'">Status</th>
+    <th *ngIf="editCredential"></th>
+    <th *ngIf="banCredential"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of state.items; trackBy: trackByFn">
+    <td><a (click)="openEmployeeInfo(item.id)">{{item.login}}</a></td>
+    <td>{{item.name}}</td>
+    <td>{{item.lastName}}</td>
+    <td>{{item.phone}}</td>
+    <td>{{getItemRoles(item.roles)}}</td>
+    <td class="max-700">{{item.additionalAccessLevels?.join(', ')}}</td>
+    <td>
+      <app-user-status [type]="item.status"></app-user-status>
+    </td>
+    <td *ngIf="editCredential">
+      <app-edit-icon (click)="navigateToEditEmployee(item.id)"></app-edit-icon>
+    </td>
+    <td *ngIf="banCredential">
+      <app-ban-icon *ngIf="item.status !== userStatus.Blocked" (click)="onBlockUser(item)"></app-ban-icon>
+      <app-add-icon *ngIf="item.status === userStatus.Blocked" (click)="updateUserBlock(item)"></app-add-icon>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #modalContent>
+  <app-employee-info [isLoading]="state.employee?.isLoading" [employeeInfo]="state.employee?.content"></app-employee-info>
+</ng-template>

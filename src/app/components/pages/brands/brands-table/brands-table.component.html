@@ -1,0 +1,57 @@
+<nz-table
+  class="no-expand-table"
+  [nzSize]="'small'"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="false"
+  [nzHideOnSinglePage]="false"
+  [nzData]="state?.items"
+  [nzTotal]="state?.totalItems"
+  [nzLoadingDelay]="0"
+  [nzLoading]="state?.isLoading"
+  [(nzPageIndex)]="paged.page"
+  [(nzPageSize)]="paged.pageSize"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)">
+  <thead nzSingleSort (nzSortChange)="onSort($event)">
+  <tr>
+    <th nzShowSort [nzSortKey]="'name'">Brand</th>
+    <th nzShowSort [nzSortKey]="'type'">Type</th>
+    <th nzShowSort [nzSortKey]="'commissionBulkBuy'">Bulk buying</th>
+    <th nzShowSort [nzSortKey]="'commissionBuy'">Buying %</th>
+    <th nzShowSort [nzSortKey]="'commissionSell'">Selling %</th>
+    <th nzShowSort [nzSortKey]="'activeCardsCount'">Active cards</th>
+    <th nzShowSort [nzSortKey]="'url'">URL (check)</th>
+    <th nzShowSort [nzSortKey]="'topCommissionSell'">Top %</th>
+    <th>Related Brands</th>
+    <th></th>
+    <th *ngIf="editCredential"></th>
+    <th *ngIf="abilityCredential"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of (state?.items || []); trackBy: trackByFn">
+    <tr [class.text-error]="!item.canBuyCard">
+      <td>{{item.name}}</td>
+      <td>{{item.type}}</td>
+      <td>{{item.commissionBulkBuy}} %</td>
+      <td>{{item.commissionBuy}} %</td>
+      <td>{{item.commissionSell}} %</td>
+      <td>{{item.activeCardsCount}}</td>
+      <td><a (click)="onUrlNavigate(item.url)">{{item.url}}</a></td>
+      <td>{{item.phone}}</td>
+      <td>{{item.topCommissionSell}}</td>
+      <td>{{getRelatedBrands(item)}}</td>
+      <td>
+        <app-table-comment [data]="item.comment"></app-table-comment>
+      </td>
+      <td *ngIf="editCredential">
+        <app-edit-icon (click)="onEditNavigate(item.id)"></app-edit-icon>
+      </td>
+      <td *ngIf="abilityCredential">
+        <app-ban-icon *ngIf="item.canBuyCard" (click)="onSetAbility(item)"></app-ban-icon>
+        <app-add-icon *ngIf="!item.canBuyCard" (click)="onSetAbility(item)"></app-add-icon>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</nz-table>

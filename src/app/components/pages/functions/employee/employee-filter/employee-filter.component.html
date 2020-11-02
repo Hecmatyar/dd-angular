@@ -1,0 +1,36 @@
+<form class="base-form" nz-form [formGroup]="form" *ngIf="form">
+  <app-base-filter-template
+    [text]="'Employee name'">
+    <app-input [parentForm]="form" [controlName]="'name'"></app-input>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Phone number'">
+    <app-input [parentForm]="form" [controlName]="'phone'"></app-input>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Roles'">
+    <app-input [parentForm]="form" [controlName]="'role'"></app-input>
+  </app-base-filter-template>
+  <div class="bottom-place">
+    <app-button
+      [text]="'Clear'"
+      [type]="buttonType.BLUE"
+      (clickEvent)="clearFilter()">
+    </app-button>
+  </div>
+  <div class="bottom-place">
+    <app-button
+      [text]="'Apply'"
+      [type]="buttonType.GREEN"
+      (clickEvent)="applyFilter()">
+    </app-button>
+  </div>
+  <div class="bottom-place">
+    <app-button
+      [text]="'Create'"
+      [type]="buttonType.GREEN"
+      [disabled]="!createCredential"
+      (clickEvent)="createNewEmployee()">
+    </app-button>
+  </div>
+</form>

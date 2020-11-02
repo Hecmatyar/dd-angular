@@ -1,0 +1,11 @@
+<div class="date-picker" [formGroup]="parentForm">
+  <nz-date-picker
+    [nzStyle]="{width: '100%'}"
+    [formControlName]="controlName"
+    [nzFormat]="dateFormat"
+    (ngModelChange)="onChange($event)"
+    [nzPlaceHolder]="placeholder"
+    [nzDisabledDate]="disabledDate">
+  </nz-date-picker>
+</div>
+

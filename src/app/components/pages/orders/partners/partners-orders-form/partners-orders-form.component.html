@@ -1,0 +1,49 @@
+<app-base-form-template [isLoading]="isLoading">
+  <ng-container content>
+    <div class="base-line">
+      <app-base-filter-template
+        [isError]="isInvalid('vendorId')"
+        [text]="'Vendor*'">
+        <app-partners-vendor-autocomplete
+          [parentForm]="form"
+          [controlName]="'vendorId'">
+        </app-partners-vendor-autocomplete>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Withdraw method*'"
+        [isError]="isInvalid('paymentMethodId')">
+        <app-nz-select
+          [parentForm]="form"
+          [controlName]="'paymentMethodId'"
+          [items]="paymentItems">
+        </app-nz-select>
+      </app-base-filter-template>
+    </div>
+    <div class="builder">
+      <app-partners-order-builder
+        #orderBuilder
+        [cards]="cards || []"
+        [vendorId]="form.get('vendorId').value"
+        (verify)="onVerify($event)">
+      </app-partners-order-builder>
+    </div>
+  </ng-container>
+  <ng-container footer>
+    <div class="footer">
+      <div class="load-csv">
+        <app-upload-file
+          [disabled]="!form.get('vendorId').value"
+          [title]="'Upload CSV'"
+          [accept]="'.csv'"
+          (file)="onUploadFile($event)">
+        </app-upload-file>
+      </div>
+      <div class="action">
+        <app-button class="create" [text]="'Create'" [type]="buttonType.GREEN" (clickEvent)="applyForm()"></app-button>
+        <app-button class="cancel" [text]="'Cancel'" [type]="buttonType.RED" (clickEvent)="revertOrder()"></app-button>
+      </div>
+    </div>
+  </ng-container>
+</app-base-form-template>

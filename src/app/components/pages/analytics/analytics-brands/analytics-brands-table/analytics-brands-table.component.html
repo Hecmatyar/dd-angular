@@ -1,0 +1,49 @@
+<nz-table
+  class="no-expand-table"
+  [nzSize]="'small'"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="false"
+  [nzHideOnSinglePage]="false"
+  [nzData]="state?.brandsItems"
+  [nzTotal]="state?.totalItems"
+  [nzLoadingDelay]="0"
+  [nzLoading]="state?.isLoading"
+  [(nzPageIndex)]="paged.page"
+  [(nzPageSize)]="paged.pageSize"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)">
+  <thead nzSingleSort (nzSortChange)="onSort($event)">
+  <tr>
+    <th nzShowSort [nzSortKey]="'brand'">Brand</th>
+    <th nzShowSort [nzSortKey]="'loadedCount'">Loaded</th>
+    <th nzShowSort [nzSortKey]="'sendCount'">Send</th>
+    <th nzShowSort [nzSortKey]="'onSaleCount'">On Sale</th>
+    <th nzShowSort [nzSortKey]="'activeCount'">Active</th>
+    <th nzShowSort [nzSortKey]="'guaranteeExpiredCount'">Guar. exp.</th>
+    <th nzShowSort [nzSortKey]="'usedCount'">Used</th>
+    <th nzShowSort [nzSortKey]="'deniedCount'">Denied</th>
+    <th nzShowSort [nzSortKey]="'deniedAmount'">Denied $</th>
+    <th nzShowSort [nzSortKey]="'credit'">Credit</th>
+    <th nzShowSort [nzSortKey]="'debit'">Debit</th>
+    <th nzShowSort [nzSortKey]="'profit'">Profit</th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of items; trackBy: trackByFn">
+    <tr>
+      <td>{{item.brand}}</td>
+      <td>{{item.loadedCount}}</td>
+      <td>{{item.sendCount}}</td>
+      <td>{{item.onSaleCount}}</td>
+      <td>{{item.activeCount}}</td>
+      <td>{{item.guaranteeExpiredCount}}</td>
+      <td>{{item.usedCount}}</td>
+      <td>{{item.deniedCount}}</td>
+      <td>{{item.deniedAmount | number:'.2'}} $</td>
+      <td> <span class="credit">{{item.credit | number:'.2'}} $</span></td>
+      <td> <span class="debit">{{item.debit | number:'.2'}} $</span></td>
+      <td> <span class="profit">{{item.profit | number:'.2'}} $</span></td>
+    </tr>
+  </ng-container>
+  </tbody>
+</nz-table>

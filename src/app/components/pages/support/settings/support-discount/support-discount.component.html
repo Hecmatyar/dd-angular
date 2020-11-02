@@ -1,0 +1,33 @@
+<form [formGroup]="form" *ngIf="form; else spinner">
+  <div class="fields">
+    <h2>Discount settings</h2>
+
+    <div formArrayName="discountThresholds" *ngFor="let item of formArray.controls; let i = index">
+      <div class="range-wrapper" formGroupName="{{i}}">
+        <label>
+          Range #{{i + 1}}, from $
+          <input nz-input formControlName="from">
+        </label>
+
+        <label>
+          Discount for {{i + 1}} range (%)
+          <input nz-input formControlName="percent">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="button">
+    <div class="button-place">
+      <app-button
+        [text]="'Save settings'"
+        [type]="buttonType.GREEN"
+        (clickEvent)="onSubmit()">
+      </app-button>
+    </div>
+  </div>
+</form>
+
+<ng-template #spinner>
+  <nz-spin class="spinner"></nz-spin>
+</ng-template>

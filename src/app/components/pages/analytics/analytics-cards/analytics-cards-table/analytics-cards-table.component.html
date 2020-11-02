@@ -1,0 +1,80 @@
+<div class="title">{{content?.totalCard}}({{content?.totalAmount ? '$ ' : ''}}{{content?.totalAmount}})</div>
+
+<nz-tabset
+  [nzTabBarGutter]="36"
+  [nzTabBarStyle]="{
+    display: 'flex',
+    justifyContent: 'center',
+    border: '0'
+  }">
+  <nz-tab [nzTitle]="partnersTab">
+    <nz-table
+      *ngIf="content"
+      class="analytics-card-table"
+      [nzSize]="'small'"
+      [nzData]="[content?.partners.cards]"
+      [nzShowPagination]="false"
+      [nzLoading]="isLoading">
+      <tbody>
+        <tr *ngFor="let item of content.partners.cards">
+          <td>{{item.status}}</td>
+          <td [appGraphicCount]="item.count" [maxCount]="maxCount.partners"></td>
+          <td>{{item.amount ? '$ ' : ''}}{{item.amount}}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-tab>
+  <nz-tab [nzTitle]="usersTab">
+    <nz-table
+      *ngIf="content"
+      class="analytics-card-table"
+      [nzSize]="'small'"
+      [nzData]="[content?.users.cards]"
+      [nzShowPagination]="false">
+      <tbody>
+      <tr *ngFor="let item of content.users.cards">
+        <td>{{item.status}}</td>
+        <td [appGraphicCount]="item.count" [maxCount]="maxCount.users"></td>
+        <td>{{item.amount ? '$ ' : ''}}{{item.amount}}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </nz-tab>
+  <nz-tab [nzTitle]="toBulkTab">
+    <nz-table
+      *ngIf="content"
+      class="analytics-card-table"
+      [nzSize]="'small'"
+      [nzData]="[content?.toBulk.cards]"
+      [nzShowPagination]="false">
+      <tbody>
+      <tr *ngFor="let item of content.toBulk.cards">
+        <td>{{item.status}}</td>
+        <td [appGraphicCount]="item.count" [maxCount]="maxCount.toBulk"></td>
+        <td>{{item.amount ? '$ ' : ''}}{{item.amount}}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </nz-tab>
+</nz-tabset>
+
+<ng-template #partnersTab>
+  <div class="tab">
+    <div class="tabTitle">Partners</div>
+    <div class="amount">{{content?.partners.count}}({{content?.partners.amount ? '$ ' : ''}}{{content?.partners.amount}})</div>
+  </div>
+</ng-template>
+
+<ng-template #usersTab>
+  <div class="tab">
+    <div class="tabTitle">Users</div>
+    <div class="amount">{{content?.users.count}}({{content?.users.amount ? '$ ' : ''}}{{content?.users.amount}})</div>
+  </div>
+</ng-template>
+
+<ng-template #toBulkTab>
+  <div class="tab">
+    <div class="tabTitle">To bulk</div>
+    <div class="amount">{{content?.toBulk.count}}({{content?.toBulk.amount ? '$ ' : ''}}{{content?.toBulk.amount}})</div>
+  </div>
+</ng-template>

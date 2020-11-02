@@ -1,0 +1,31 @@
+<header class="row-header">
+  <a (click)="onBulkCreateNavigate()" class="has-underline"
+     *ngIf="data.status === orderStatus.Draft">Continue creating</a>
+  <a (click)="onTransactionsHistoryNavigate()" class="has-underline">View transactions history</a>
+</header>
+<nz-table [nzData]="[data]" [nzShowPagination]="false" class="row-table">
+  <thead>
+  <tr>
+    <th class="base-padding">Total cards</th>
+    <th>Paid</th>
+    <th>Awaiting</th>
+    <th>Denied</th>
+    <th>Invalid</th>
+    <th>External Id</th>
+    <th width="400">comment</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="base-padding"><a (click)="onNavigate()">{{data.detail.totalCards}}</a></td>
+    <td><a (click)="onNavigate([cardStatus.Active, cardStatus.GuaranteeExpired])">{{data.detail.paidCards}}</a></td>
+    <td><a (click)="onNavigate([cardStatus.Send])">{{data.detail.awaitingCards}}</a></td>
+    <td><a (click)="onNavigate([cardStatus.Denied, cardStatus.Rejected])">{{data.detail.deniedCards}}</a></td>
+    <td><a (click)="onNavigate([cardStatus.Inactive])">{{data.detail.invalidCards}}</a></td>
+    <td>{{data.detail.externalId}}</td>
+    <td class="ws-init">
+      <app-table-comment [data]="data.comment" (valueChange)="onChangeComment($event)"></app-table-comment>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

@@ -1,0 +1,11 @@
+<div class="container" (change)="onChange()">
+  <label>
+    Question #{{index}}
+    <textarea rows="4" nz-input [(ngModel)]="question"></textarea>
+  </label>
+
+  <label>
+    Answer
+    <textarea rows="4" nz-input [(ngModel)]="answer"></textarea>
+  </label>
+</div>

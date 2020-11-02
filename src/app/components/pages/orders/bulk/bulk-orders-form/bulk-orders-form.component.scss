@@ -1,0 +1,27 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .action {
+    display: flex;
+
+    .create {
+      margin-right: 15px;
+    }
+
+    .create, .cancel {
+      width: 140px;
+    }
+  }
+}
+
+.builder {
+  padding: 20px 0;
+}
+
+.base-line, .line {
+  padding: 0 16px;
+}
+

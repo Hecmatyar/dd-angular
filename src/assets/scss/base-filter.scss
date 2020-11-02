@@ -1,0 +1,41 @@
+.base-form, .base-line {
+
+  & > * {
+    min-width: 0;
+  }
+
+  display: grid;
+  grid-gap: 0 30px;
+
+  .bottom-place {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 8px;
+    padding-top: 14px;
+
+    .ant-btn {
+      flex-grow: 1;
+    }
+  }
+
+  @media only screen and (max-width: 599px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media only screen and (min-width: 992px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media only screen and (min-width: 1200px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

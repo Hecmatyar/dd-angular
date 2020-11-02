@@ -1,0 +1,64 @@
+// -------- import official less file -----------
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+@import "assets/less/common.less";
+// -------- override less var -----------
+//@primary-color : #34C15C;
+
+.ant-btn {
+  transition: none;
+
+  &:hover {
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+}
+
+.ant-btn-success {
+  background-color: #34C15C;
+  border-color: #34C15C;
+  color: #ffffff;
+
+
+  &:hover, &:focus {
+    color: #fff;
+    background-color: #59cf76;
+    border-color: #59cf76;
+  }
+}
+
+.ant-btn-primary {
+  color: #fff;
+  background-color: #30B9F5;
+  border-color: #30B9F5;
+
+  &:hover, &:focus {
+    color: #fff;
+    background-color: #5cd3ff;
+    border-color: #5cd3ff;
+  }
+}
+
+.ant-btn-secondary {
+  color: #fff;
+  background-color: #FF6A92;
+  border-color: #FF6A92;
+
+  &:hover, &:focus {
+    color: #fff;
+    background-color: #ff94ad;
+    border-color: #ff94ad;
+  }
+}
+
+.alert {
+  color: #FF6A92;
+  border-color: #FF6A92;
+}
+
+.ant-form-item-label {
+  line-height: 1;
+}
+
+.ant-form-item-control {
+  line-height: 1;
+}
+

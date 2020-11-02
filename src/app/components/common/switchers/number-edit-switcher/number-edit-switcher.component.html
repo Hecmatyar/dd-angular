@@ -1,0 +1,24 @@
+<div class="text-edit">
+  <div class="content" (dblclick)="toggleFormat()" *ngIf="!isEdit">
+    <ng-content></ng-content>
+  </div>
+  <div class="editable-content" *ngIf="isEdit">
+    <!--<nz-input-number-->
+    <!--[(ngModel)]="value"-->
+    <!--(ngModelChange)="onChangeValue()"-->
+    <!--[nzMin]="0"-->
+    <!--(nzBlur)="onBlur($event)"-->
+    <!--(keyup)="onKeyup($event)">-->
+    <!--</nz-input-number>-->
+    <label>
+      <input
+        #inputNumber
+        nz-input nz-tooltip
+        placeholder=""
+        [ngModel]="innerValue"
+        (ngModelChange)="updateValue($event)"
+        (blur)="onBlur()"
+        (keyup)="onKeyup($event)">
+    </label>
+  </div>
+</div>

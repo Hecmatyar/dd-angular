@@ -1,0 +1,17 @@
+.cards-export {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  .export-type {
+    padding: 0 25px;
+  }
+
+  button {
+    width: auto;
+  }
+}
+
+//:host ::ng-deep select {
+//  width: 200px !important;
+//}

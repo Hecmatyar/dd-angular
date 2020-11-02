@@ -1,0 +1,74 @@
+<div class="order-builder">
+  <ng-container>
+    <div class="title">BRAND</div>
+    <div class="title">NUMBER</div>
+    <div class="title">PIN-CODE</div>
+    <div class="title">EXPIRATION</div>
+    <div class="title">VALUE</div>
+    <div class="title">%</div>
+    <div class="title">PAY OUT</div>
+    <div class="title"></div>
+    <div class="title"></div>
+  </ng-container>
+  <ng-container *ngFor="let card of cards" class="excluded">
+    <div class="cell" [class.excluded]="isCardExcluded(card)">{{card.brand.name}}</div>
+    <div class="cell" [class.excluded]="isCardExcluded(card)">{{card.number || '-'}}</div>
+    <div class="cell" [class.excluded]="isCardExcluded(card)">{{card.pinCode || '-'}}</div>
+    <div class="cell" [class.excluded]="isCardExcluded(card)">{{(card.expiration | date:'M/d/yy hh:m') || '-'}}</div>
+    <div class="cell" [class.excluded]="isCardExcluded(card)">{{card.amount || '-'}}</div>
+    <div class="cell" [class.excluded]="isCardExcluded(card)">{{card.percent}}</div>
+    <div class="cell" [class.excluded]="isCardExcluded(card)">{{card.payOut}}</div>
+    <div class="cell" [class.excluded]="isCardExcluded(card)"></div>
+    <div class="cell" [class.excluded]="isCardExcluded(card)">
+      <div class="toggle-card">
+        <app-add-icon
+          *ngIf="!isCardSelected(card.number)"
+          (click)="toggleCard(card.number)">
+        </app-add-icon>
+        <app-delete-icon
+          *ngIf="isCardSelected(card.number)"
+          (click)="toggleCard(card.number)">
+        </app-delete-icon>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container>
+    <div class="total">Total cards:</div>
+    <div class="total">{{totalCards}}</div>
+    <div class="total">Total current $:</div>
+    <div class="total">{{totalCurrent | number:'.2'}}</div>
+    <div></div>
+    <div class="total">Total paid us:</div>
+    <div class="total">{{totalPaidUs | number:'.2'}}</div>
+    <div></div>
+    <div></div>
+  </ng-container>
+  <ng-container>
+    <div class="input">
+      <app-brand-autocomplete [parentForm]="form" [controlName]="'brand'"></app-brand-autocomplete>
+    </div>
+    <div class="input">
+      <app-input [parentForm]="form" [controlName]="'number'"></app-input>
+    </div>
+    <div class="input">
+      <app-input [parentForm]="form" [controlName]="'pinCode'"></app-input>
+    </div>
+    <div class="input">
+      <app-date-picker
+        [parentForm]="form"
+        [controlName]="'expiration'"
+        [dateFormat]="'M/d/yy'"
+        [placeholder]="'expiration'">
+      </app-date-picker>
+    </div>
+    <div class="input">
+      <app-input [parentForm]="form" [controlName]="'value'"></app-input>
+    </div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="icon-add">
+      <app-add-icon (click)="onVerify()" *ngIf="form.valid"></app-add-icon>
+    </div>
+  </ng-container>
+</div>

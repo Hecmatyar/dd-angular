@@ -1,0 +1,61 @@
+<nz-modal
+  *ngIf="!!task"
+  [nzVisible]="!!task"
+  [nzFooter]="null"
+  nzWidth="790"
+  (nzOnCancel)="handleCancel()"
+>
+  <header>
+    <div class="number">Task #456</div>
+    <div class="title">Reporting a problem</div>
+  </header>
+
+  <main>
+    <div class="subtitle"><div>Details</div><span></span></div>
+
+    <div class="line">
+      <div class="key">Priority:</div>
+      <div class="value">
+        <app-priority-icon class="icon {{task.priority}}"></app-priority-icon>
+        {{task.priority}}
+      </div>
+    </div>
+    <div class="line">
+      <div class="key">Status:</div><div class="value">{{task.status}}</div>
+    </div>
+    <div class="line">
+      <div class="key">Add date:</div><div class="value">{{task.date | date:'MM/dd/yy'}}</div>
+    </div>
+    <div class="line">
+      <div class="key">Role:</div><div class="value">{{task.author}}</div>
+    </div>
+
+    <div class="subtitle"><div>Description</div><span></span></div>
+
+    <div class="line">
+      <div class="key">User:</div><div class="value">{{task.author}}</div>
+    </div>
+    <div class="line">
+      <div class="key">Problem card:</div><div class="value">{{task.category}}</div>
+    </div>
+    <div class="line">
+      <div class="key">Pin Code:</div><div class="value">{{task.status}}</div>
+    </div>
+    <div class="line">
+      <div class="key">Exp Date:</div><div class="value">{{task.date | date:'MM/dd/yy'}}</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="subtitle"><div>Comment</div><span></span></div>
+    <label>
+      <textarea nz-input placeholder="Comment" [(ngModel)]="comment"></textarea>
+    </label>
+    <app-button
+      [disabled]="task.status === 'Closed'"
+      [type]="buttonTypes.BLUE"
+      [text]="'Solve task'"
+      (click)="handleOk()"
+    ></app-button>
+  </footer>
+</nz-modal>

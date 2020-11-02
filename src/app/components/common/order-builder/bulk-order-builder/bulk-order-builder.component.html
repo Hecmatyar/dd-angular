@@ -1,0 +1,46 @@
+<div class="order-builder">
+  <ng-container>
+    <div class="title">BRAND</div>
+    <div class="title">NUMBER</div>
+    <div class="title">PIN-CODE</div>
+    <div class="title">CURRENT $</div>
+    <div class="title">BUY %</div>
+    <div class="title">LAST PAY OUT</div>
+    <div class="title">WILL PAID US</div>
+    <div class="title"></div>
+    <div class="title"></div>
+  </ng-container>
+  <ng-container *ngFor="let card of cards" class="excluded">
+    <div class="cell" [class.excluded]="!isCardSelected(card.cardInfo.id)">{{card.brand.name}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.cardInfo.id)">{{card.cardInfo.number || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.cardInfo.id)">{{card.cardInfo.pinCode || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.cardInfo.id)">{{card.cardInfo.amount || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.cardInfo.id)">{{card.buyPercent || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.cardInfo.id)">{{card.lastPayOut || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.cardInfo.id)">{{card.willPaidUs || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.cardInfo.id)"></div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.cardInfo.id)">
+      <div class="toggle-card">
+        <app-add-icon
+          *ngIf="!isCardSelected(card.cardInfo.id)"
+          (click)="toggleCard(card.cardInfo.id)">
+        </app-add-icon>
+        <app-delete-icon
+          *ngIf="isCardSelected(card.cardInfo.id)"
+          (click)="toggleCard(card.cardInfo.id)">
+        </app-delete-icon>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container>
+    <div class="total">Total cards:</div>
+    <div class="total">{{totalCards}}</div>
+    <div class="total">Total current $:</div>
+    <div class="total">{{totalCurrent | number:'.2'}}</div>
+    <div></div>
+    <div class="total">Total paid us:</div>
+    <div class="total">{{totalPaidUs | number:'.2'}}</div>
+    <div></div>
+    <div></div>
+  </ng-container>
+</div>

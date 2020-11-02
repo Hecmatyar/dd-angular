@@ -1,0 +1,47 @@
+<nz-table
+  class="no-expand-table"
+  [nzSize]="'small'"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="false"
+  [nzHideOnSinglePage]="false"
+  [nzData]="state?.partnersItems"
+  [nzTotal]="state?.totalItems"
+  [nzLoadingDelay]="0"
+  [nzLoading]="state?.isLoading"
+  [(nzPageIndex)]="paged.page"
+  [(nzPageSize)]="paged.pageSize"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)">
+  <thead nzSingleSort (nzSortChange)="onSort($event)">
+  <tr>
+    <th nzShowSort [nzSortKey]="'name'">Partner Name</th>
+    <th nzShowSort [nzSortKey]="'ordersCount'">Orders</th>
+    <th nzShowSort [nzSortKey]="'lastOrder'">Last Orders</th>
+    <th nzShowSort [nzSortKey]="'cardsCount'">Cards</th>
+    <th nzShowSort [nzSortKey]="'payOut'">Pay Out</th>
+    <th nzShowSort [nzSortKey]="'debt'">Debt</th>
+    <th nzShowSort [nzSortKey]="'hold'">Hold</th>
+    <th nzShowSort [nzSortKey]="'toPay'">To Pay</th>
+    <th nzShowSort [nzSortKey]="'reliability'">Reliability</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of items; trackBy: trackByFn">
+    <tr>
+      <td>{{item.name}}</td>
+      <td>{{item.ordersCount}}</td>
+      <td>{{item.lastOrder | date:'M/d/yy'}}</td>
+      <td>{{item.cardsCount}}</td>
+      <td>$ {{item.payOut | number:'.2'}}</td>
+      <td>$ {{item.debt | number:'.2'}}</td>
+      <td>$ {{item.hold | number:'.2'}}</td>
+      <td>$ {{item.toPay | number:'.2'}}</td>
+      <td>{{item.reliability}} %</td>
+      <td>{{item.city}}</td>
+      <td><app-comment></app-comment></td>
+    </tr>
+  </ng-container>
+  </tbody>
+</nz-table>
+

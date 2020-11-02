@@ -1,0 +1,15 @@
+<label>
+  <input
+    nz-input
+    [class.error]="isInvalid()"
+    [placeholder]="placeholder"
+    [(ngModel)]="innerValue"
+    (ngModelChange)="changeSearchValue($event)"
+    [nzAutocomplete]="auto"
+  />
+</label>
+<nz-autocomplete
+  #auto
+  (selectionChange)="onSelectionChange($event?.nzValue)"
+  [nzDataSource]="options">
+</nz-autocomplete>

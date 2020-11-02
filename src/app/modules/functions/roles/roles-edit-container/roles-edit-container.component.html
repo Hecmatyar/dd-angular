@@ -1,0 +1,5 @@
+<app-roles-form
+  [role]="(roleContent$ | async)"
+  [isLoading]="(role$ | async)?.isLoading"
+  (submitForm)="onSubmit($event)">
+</app-roles-form>

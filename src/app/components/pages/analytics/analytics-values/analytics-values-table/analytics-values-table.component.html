@@ -1,0 +1,34 @@
+<nz-table
+  class="no-expand-table"
+  [nzSize]="'small'"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="false"
+  [nzHideOnSinglePage]="false"
+  [nzData]="state?.valuesItems"
+  [nzTotal]="state?.totalItems"
+  [nzLoadingDelay]="0"
+  [nzLoading]="state?.isLoading"
+  [(nzPageIndex)]="paged.page"
+  [(nzPageSize)]="paged.pageSize"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)">
+  <thead nzSingleSort (nzSortChange)="onSort($event)">
+  <tr>
+    <th nzShowSort [nzSortKey]="'value'">Value</th>
+    <th nzShowSort [nzSortKey]="'loaded'">Loaded</th>
+    <th nzShowSort [nzSortKey]="'onSale'">On Sale</th>
+    <th nzShowSort [nzSortKey]="'totalSell'">Total Sell</th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of items; trackBy: trackByFn">
+    <tr>
+      <td>$ {{item.value.toFixed(2)}}</td>
+      <td>{{item.loaded}}</td>
+      <td>{{item.onSale}}</td>
+      <td>{{item.totalSell}}</td>
+    </tr>
+  </ng-container>
+  </tbody>
+</nz-table>
+

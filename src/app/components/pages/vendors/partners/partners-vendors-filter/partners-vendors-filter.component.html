@@ -1,0 +1,20 @@
+<form class="base-form" nz-form [formGroup]="form" *ngIf="form">
+  <app-base-filter-template
+    [text]="'Search'">
+    <app-input [parentForm]="form" [controlName]="'search'"></app-input>
+  </app-base-filter-template>
+  <div class="bottom-place">
+    <app-button
+      [text]="'Clear'"
+      [type]="buttonType.BLUE"
+      (clickEvent)="clearFilter()">
+    </app-button>
+  </div>
+  <div class="bottom-place">
+    <app-button
+      [text]="'Apply'"
+      [type]="buttonType.GREEN"
+      (clickEvent)="applyFilter()">
+    </app-button>
+  </div>
+</form>

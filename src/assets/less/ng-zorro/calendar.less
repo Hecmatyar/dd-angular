@@ -1,0 +1,27 @@
+.ant-calendar-selected-day .ant-calendar-date {
+  background-color: #30B9F5;
+  color: #fff;
+}
+
+.ant-calendar-date {
+  border-radius: 20px;
+}
+
+.ant-calendar-today:not(.ant-calendar-selected-day) .ant-calendar-date {
+  color: initial;
+  border-color: #ffffff;
+  position: relative;
+  font-weight: 300;
+
+  &:before {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    content: '';
+    background-color: #FFB800;
+    border-radius: 3px;
+  }
+}

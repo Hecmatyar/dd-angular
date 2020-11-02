@@ -1,0 +1,9 @@
+<ng-container [formGroup]="parentForm">
+  <nz-select [nzDisabled]="disabled" [formControlName]="controlName" (ngModelChange)="onSelect()">
+    <nz-option
+      *ngFor="let item of items"
+      [nzValue]="item.key"
+      [nzLabel]="item.value">
+    </nz-option>
+  </nz-select>
+</ng-container>

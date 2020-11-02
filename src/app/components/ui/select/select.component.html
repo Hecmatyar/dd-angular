@@ -1,0 +1,13 @@
+<label>
+  <select
+    class="custom-select"
+    [disabled]="disabled"
+    [(ngModel)]="data"
+    (ngModelChange)="onChangeValue($event)">
+    <option style="display:none" value=""></option>
+    <option *ngFor="let option of options"
+            [value]="option.key">
+      {{option.value}}
+    </option>
+  </select>
+</label>

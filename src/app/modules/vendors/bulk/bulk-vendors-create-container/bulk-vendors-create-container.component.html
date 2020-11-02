@@ -1,0 +1,4 @@
+<app-bulk-vendors-form
+  (submitForm)="onSubmit($event)"
+  [isLoading]="(vendor$ | async).isLoading">
+</app-bulk-vendors-form>

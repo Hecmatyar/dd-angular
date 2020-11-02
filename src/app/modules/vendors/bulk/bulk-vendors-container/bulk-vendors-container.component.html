@@ -1,0 +1,18 @@
+<div class="bulk-orders dynamic-table">
+  <header class="dynamic-table__header">
+    <app-bulk-vendors-filter></app-bulk-vendors-filter>
+  </header>
+  <main class="dynamic-table__body">
+    <app-bulk-vendors-table
+      [detailCredential]="(detailCredential$ | async)"
+      [editCredential]="(editCredential$ | async)"
+      [banCredential]="(banCredential$ | async)"
+      [state]="bulkVendorsState$ | async">
+    </app-bulk-vendors-table>
+  </main>
+  <footer class="dynamic-table__footer">
+    <app-bulk-vendors-create
+      [createVendorCredential]="(createCredential$ | async)">
+    </app-bulk-vendors-create>
+  </footer>
+</div>

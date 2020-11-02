@@ -1,0 +1,44 @@
+<div class="container" *ngIf="settings; else spinner">
+  <header>
+    <h2>F.A.Q.</h2>
+    <div class="button-place">
+      <app-button
+        [text]="'Save settings'"
+        [type]="buttonType.GREEN"
+        (clickEvent)="onSubmit()">
+      </app-button>
+    </div>
+  </header>
+
+  <main>
+    <app-question-answer-group
+      (changeValues)="questionChange($event)"
+      [questions]="settings.faq">
+    </app-question-answer-group>
+
+    <h2>Report a problem</h2>
+
+    <app-problem-group
+      (onChange)="problemsChange($event)"
+      [items]="settings.typicalProblemList">
+    </app-problem-group>
+
+    <h2>About Us</h2>
+
+    <label>
+      Main text
+      <ckeditor tagName="textarea" [editor]="Editor" [(ngModel)]="settings.aboutUs"></ckeditor>
+    </label>
+
+    <h2>Privacy Policy</h2>
+
+    <label>
+      Main text
+      <ckeditor tagName="textarea" [editor]="Editor" [(ngModel)]="settings.policyTermsAndConditions"></ckeditor>
+    </label>
+  </main>
+</div>
+
+<ng-template #spinner>
+  <nz-spin class="spinner"></nz-spin>
+</ng-template>

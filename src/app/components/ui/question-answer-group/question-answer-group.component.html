@@ -1,0 +1,12 @@
+<div *ngFor="let question of questions; let i = index">
+  <div class="question-container">
+    <app-plus-icon *ngIf="!i" (click)="onAddNew()" class="icon"></app-plus-icon>
+    <app-minus-icon *ngIf="i" (click)="onRemove(i)" class="icon"></app-minus-icon>
+    <app-question-answer
+      (changeValues)="onChangeValue($event, i)"
+      [index]="i + 1"
+      [question]="question.question"
+      [answer]="question.answer">
+    </app-question-answer>
+  </div>
+</div>

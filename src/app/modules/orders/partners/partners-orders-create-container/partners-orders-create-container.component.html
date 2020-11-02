@@ -1,0 +1,5 @@
+<app-partners-orders-form
+  [isLoading]="(partnersCards$ | async).isLoading"
+  [cards]="(partnersCards$ | async).content"
+  [paymentItems]="(partnersPayment$ | async)">
+</app-partners-orders-form>

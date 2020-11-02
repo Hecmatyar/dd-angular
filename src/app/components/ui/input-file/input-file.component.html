@@ -1,0 +1,16 @@
+<div [formGroup]="parentForm">
+  <label [for]="id" class="input-file ant-input">
+    <span class="text">
+      {{parentForm.get(controlName)?.value?.name || text}}
+    </span>
+    <app-upload-icon></app-upload-icon>
+  </label>
+
+  <input
+    type="file"
+    nz-input
+    [id]="id"
+    [accept]="accept"
+    [attr.disabled]="disabled ? '' : null"
+    (change)="setFile($event.target.files[0])"/>
+</div>

@@ -1,0 +1,12 @@
+<div class="mobile-orders dynamic-table">
+  <header class="dynamic-table__header">
+    <app-mobile-orders-filter></app-mobile-orders-filter>
+  </header>
+  <main class="dynamic-table__body">
+    <app-mobile-orders-table
+      [detailCredential]="(detailCredential$ | async)"
+      [statusCredential]="(statusCredential$ | async)"
+      [state]="mobileOrderState$ | async">
+    </app-mobile-orders-table>
+  </main>
+</div>

@@ -1,0 +1,41 @@
+@import "ng-zorro/dark.less";
+@import "ng-zorro/ng-zorro-antd.less";
+@import "ng-zorro/pagination.less";
+@import "ng-zorro/calendar.less";
+
+@import "theme.less";
+@import "scrollbar.less";
+
+label {
+    color: #828282;
+}
+
+.has-underline {
+    text-decoration: underline;
+}
+
+.feather {
+    text-decoration: none;
+}
+
+.custom-select {
+    border: #828282 1px solid;
+    border-radius: 8px;
+    padding: 0 20px 0 4px;
+    background: 
+        url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23fff' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .25rem center/8px 10px,
+        linear-gradient(270deg, @primary-color 16px, #fff 16px);
+    appearance: none;
+}
+
+.text-primary { color: @primary-color; }
+.text-secondary { color: @secondary-color; }
+.text-dark { color: #000; }
+.text-info { color: @info-color; }
+.text-success { color: @success-color; }
+.text-error { color: @error-color; }
+.text-warning { color: @warning-color; }
+
+.ant-calendar-picker {
+  max-width: 100%;
+}

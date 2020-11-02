@@ -1,0 +1,7 @@
+<div class="info-modal">
+  <ng-content></ng-content>
+</div>
+
+<div class="spinner" *ngIf="isLoading">
+  <nz-spin [nzSpinning]="isLoading"></nz-spin>
+</div>

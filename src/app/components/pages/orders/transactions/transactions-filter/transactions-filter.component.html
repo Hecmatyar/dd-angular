@@ -1,0 +1,51 @@
+<form class="base-form" nz-form [formGroup]="form" *ngIf="form">
+  <app-base-filter-template
+    [text]="'Transaction status'">
+    <app-nz-select [parentForm]="form" [controlName]="'status'" [items]="transactionStatus"></app-nz-select>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Add date from'">
+    <app-date-picker
+      [parentForm]="form"
+      [controlName]="'dateFrom'"
+      [dateFormat]="'M/d/yy'"
+      [placeholder]="'from'"
+      [isFrom]="true"
+      [disableDateMode]="true"
+      [neighborDate]="form.get('dateTo').value">
+    </app-date-picker>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Add date to'">
+    <app-date-picker
+      [parentForm]="form"
+      [controlName]="'dateTo'"
+      [dateFormat]="'M/d/yy'"
+      [placeholder]="'to'"
+      [disableDateMode] = true
+      [neighborDate]="form.get('dateFrom').value">
+    </app-date-picker>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Transaction number'">
+    <app-input [parentForm]="form" [controlName]="'transactionNumber'"></app-input>
+  </app-base-filter-template>
+  <app-base-filter-template
+    [text]="'Order number'">
+    <app-input [parentForm]="form" [controlName]="'orderNumber'"></app-input>
+  </app-base-filter-template>
+  <div class="bottom-place">
+    <app-button
+      [text]="'Clear'"
+      [type]="buttonType.BLUE"
+      (clickEvent)="clearFilter()">
+    </app-button>
+  </div>
+  <div class="bottom-place">
+    <app-button
+      [text]="'Apply'"
+      [type]="buttonType.GREEN"
+      (clickEvent)="applyFilter()">
+    </app-button>
+  </div>
+</form>

@@ -1,0 +1,15 @@
+<div class="comment" (dblclick)="toggleFormat()" *ngIf="!isEdit">
+  {{data?.text}}
+</div>
+<div class="edit-comment" *ngIf="isEdit">
+  <label>
+    <textarea nz-input placeholder="Comment" #textarea
+      (blur)="toggleFormat()" (keyup)="onKeyup($event)"
+      [(ngModel)]="innerText" [nzAutosize]="{ minRows: 2, maxRows: 6 }">
+    </textarea>
+  </label>
+</div>
+<div class="info" *ngIf="data">
+  <div class="date">{{data?.dateTime | date:'M/d/yy' }}</div>
+  <div class="author">{{data?.author}}</div>
+</div>

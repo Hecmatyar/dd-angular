@@ -1,0 +1,49 @@
+.access-builder {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 15px;
+  position: relative;
+
+  .header {
+    background-color: #F7F9FA;
+    color: #828282;
+    padding: 6px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+  }
+
+  .categories .item {
+    border-right: 1px solid #F7F9FA;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .item {
+    padding: 10px 20px;
+    transition: background-color .2s ease-out;
+    font-weight: normal;
+    border-bottom: 1px solid #F7F9FA;
+
+    &:hover {
+      background-color: #C1EAFC;
+    }
+
+    &.selected {
+      background-color: #F7F9FA;
+      font-weight: bold;
+      color: #000;
+    }
+  }
+
+  .spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, .6);
+  }
+}

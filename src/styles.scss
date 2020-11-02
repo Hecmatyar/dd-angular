@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+@import "assets/scss/burger";
+@import "assets/scss/base-table";
+@import "assets/scss/base-filter";
+@import "assets/scss/info-modal";
+@import "assets/scss/base-form";
+@import "assets/scss/base-inner-table";
+@import "assets/scss/base-order-builder";
+@import "assets/scss/base-modal";
+
+@media only screen and (min-width: 600px) {
+  .mobile-visible {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  .desktop-visible {
+    display: none !important;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}

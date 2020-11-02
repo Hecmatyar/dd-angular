@@ -1,0 +1,26 @@
+<div class="bulk-orders dynamic-table">
+  <header class="dynamic-table__header">
+    <app-tasks-filter></app-tasks-filter>
+  </header>
+
+  <main class="dynamic-table__body main">
+    <app-tasks-table
+      [state]="(state$ | async)"
+      [openAllCredential]="openAllCredential$ | async">
+    </app-tasks-table>
+  </main>
+
+  <footer class="dynamic-table__footer">
+    <div class="button">
+      <app-button
+        [text]="'+ Add new task'"
+        [disabled]="!(createTaskCredential$ | async)"
+        [type]="buttonTypes.GREEN"
+        (clickEvent)="addNewTask()">
+      </app-button>
+    </div>
+  </footer>
+
+  <app-tasks-card [state]="(state$ | async)"></app-tasks-card>
+  <app-task-create [state]="(state$ | async)"></app-task-create>
+</div>

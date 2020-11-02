@@ -1,0 +1,12 @@
+<div class="bulk-orders dynamic-table">
+  <header class="dynamic-table__header no-padding">
+    <app-horizontal-menu [menuItems]="menuItems"></app-horizontal-menu>
+  </header>
+  <main class="dynamic-table__body">
+    <app-support-content
+      [isLoading]="(isLoading | async)"
+      [settings]="(settings | async)"
+      (onSave)="onSave($event)">
+    </app-support-content>
+  </main>
+</div>

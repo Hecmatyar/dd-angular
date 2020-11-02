@@ -1,0 +1,16 @@
+export const categoriesMap = new Map<string, string>();
+categoriesMap.set('employee', "Users");
+categoriesMap.set('roles', "Roles");
+categoriesMap.set('card', "Card");
+categoriesMap.set('brand', "Brand");
+categoriesMap.set('userOrders', "User orders");
+categoriesMap.set('bulkOrders', "Bulk orders");
+categoriesMap.set('partnersOrders', "Partners orders");
+categoriesMap.set('userVendors', "User Vendors");
+categoriesMap.set('bulkSalesVendors', "Bulk Sales Vendors");
+categoriesMap.set('partnersSalesVendors', "Partners Sales Vendors");
+categoriesMap.set('transactions', "Transactions");
+categoriesMap.set('tasks', "Tasks");
+categoriesMap.set('settings', "Settings");
+categoriesMap.set('analytics', "Analytics");
+categoriesMap.set('audit', "Audit");

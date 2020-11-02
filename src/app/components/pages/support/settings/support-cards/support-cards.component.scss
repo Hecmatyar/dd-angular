@@ -1,0 +1,23 @@
+form {
+  display: flex;
+  margin: 10px 20px;
+}
+.fields-wrapper {
+  width: 160px;
+}
+.fields, .button {
+  flex: 1 0 50%;
+}
+h2 {
+  font-size: 16px;
+  line-height: 32px;
+  margin-bottom: 12px;
+  color: black;
+}
+.button-place {
+  width: 160px;
+}
+app-base-filter-template {
+  margin-bottom: 20px;
+  display: block;
+}

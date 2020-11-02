@@ -1,0 +1,9 @@
+<button
+  nz-button
+  type="button"
+  [class]="'ant-btn ant-btn-' + type"
+  [nzLoading]="isLoading"
+  [disabled]="disabled"
+  (click)="onClick()">
+  {{text}}
+</button>

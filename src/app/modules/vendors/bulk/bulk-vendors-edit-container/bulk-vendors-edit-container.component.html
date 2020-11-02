@@ -1,0 +1,6 @@
+<app-bulk-vendors-form
+  (submitForm)="onSubmit($event)"
+  [isLoading]="(vendor$ | async).isLoading"
+  [paymentMethods]="(settingsPayment$ | async)"
+  [vendor]="(vendorContent$ | async)">
+</app-bulk-vendors-form>

@@ -1,0 +1,58 @@
+<nz-table
+  class="no-expand-table"
+  [nzSize]="'small'"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="false"
+  [nzHideOnSinglePage]="false"
+  [nzData]="state?.items"
+  [nzTotal]="state?.totalItems"
+  [nzLoadingDelay]="0"
+  [nzLoading]="state?.isLoading"
+  [(nzPageIndex)]="paged.page"
+  [(nzPageSize)]="paged.pageSize"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)">
+  <thead nzSingleSort (nzSortChange)="onSort($event)">
+  <tr>
+    <th nzShowSort [nzSortKey]="'transactionType'"></th>
+    <th nzShowSort [nzSortKey]="'adminTransactionType'">Type</th>
+    <th nzShowSort [nzSortKey]="'status'">Status</th>
+    <th nzShowSort [nzSortKey]="'date'">Date</th>
+    <th nzShowSort [nzSortKey]="'transactionNumber'">Number</th>
+    <th nzShowSort [nzSortKey]="'orderNumber'">Order</th>
+    <th nzShowSort [nzSortKey]="'paymentMethod'">Payment method</th>
+    <th nzShowSort [nzSortKey]="'value'">Value</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of (state?.items || []); trackBy: trackByFn">
+    <tr>
+      <td>
+        <div class="transaction-type">
+          <app-debit-icon *ngIf="item.transactionType === transactionType.Debit"></app-debit-icon>
+          <app-credit-icon *ngIf="item.transactionType === transactionType.Credit"></app-credit-icon>
+        </div>
+      </td>
+      <td>{{item.type}}</td>
+      <td>
+        <app-select
+          class="select-status"
+          [data]="item.status"
+          [options]="getStatusEnum(item)"
+          [disabled]="!statusCredential"
+          (changeValue)="updateStatus($event, item)">
+        </app-select>
+      </td>
+      <td>{{item.date | date:'M/d/yy hh:m' }}</td>
+      <td>{{item.transactionNumber}}</td>
+      <td><a (click)="orderNavigate(item)">{{item.orderNumber}}</a></td>
+      <td>{{item.paymentMethod}}</td>
+      <td>{{item.value | number:'.2'}}</td>
+      <td>
+        <app-comment></app-comment>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</nz-table>

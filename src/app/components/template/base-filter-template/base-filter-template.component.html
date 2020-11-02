@@ -1,0 +1,8 @@
+<nz-form-item class="form-item">
+  <nz-form-label [nzRequired]="isRequired" *ngIf="text">
+    <span class="title" [class.text-error]="isError">{{text}}</span>
+  </nz-form-label>
+  <nz-form-control class="content">
+    <ng-content></ng-content>
+  </nz-form-control>
+</nz-form-item>

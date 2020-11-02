@@ -1,0 +1,16 @@
+.form-item {
+  min-width: 0;
+
+  .title {
+    color: #828282;
+    font-size: 12px;
+
+    &.text-error {
+      color: #FF6A92;
+    }
+  }
+
+  .content {
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,97 @@
+<nz-table
+  class="expand-table"
+  [nzSize]="'small'"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="false"
+  [nzHideOnSinglePage]="false"
+  [nzData]="state?.items"
+  [nzTotal]="state?.totalItems"
+  [nzLoadingDelay]="0"
+  [nzLoading]="state?.isLoading"
+  [(nzPageIndex)]="paged.page"
+  [(nzPageSize)]="paged.pageSize"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)">
+  <thead nzSingleSort (nzSortChange)="onSort($event)">
+  <tr>
+    <th nzWidth="50px" nzLeft="0" *ngIf="detailCredential"></th>
+    <th nzWidth="30px" [nzLeft]="leftPaddingDetail"></th>
+    <th nzShowSort [nzSortKey]="'status'">Status</th>
+    <th nzShowSort [nzSortKey]="'brandName'">Brand</th>
+    <th nzShowSort [nzSortKey]="'currentAmount'">Value</th>
+    <th nzShowSort [nzSortKey]="'value'">Current $</th>
+    <th nzShowSort [nzSortKey]="'createdUtc'">Add Date</th>
+    <th nzShowSort [nzSortKey]="'number'">Number</th>
+    <th nzShowSort [nzSortKey]="'pinCode'">Pin-Code</th>
+    <th nzShowSort [nzSortKey]="'expiration'">Expiration</th>
+    <th nzShowSort [nzSortKey]="'vendorName'">Vendor</th>
+    <th nzShowSort [nzSortKey]="'buyerName'">Buyer</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of (state?.items || []); trackBy: trackByFn">
+    <tr>
+      <td *ngIf="detailCredential" nzShowExpand nzLeft="0" [nzExpand]="isCardExpanded(item.id)"
+          (nzExpandChange)="onExpandCard(item.id)"></td>
+      <td nzShowCheckbox
+          [nzLeft]="leftPaddingDetail"
+          [nzDisabled]="item.detail?.type !== sellCardType.PartnersCard"
+          [nzChecked]="isCardSelected(item.id)"
+          (nzCheckedChange)="onCheckToExport(item.id)"></td>
+      <td>
+        <app-select class="select-status"
+                    [data]="item.status"
+                    [options]="getStatusEnum(item)"
+                    [disabled]="!statusCredential"
+                    (changeValue)="updateStatus($event, item.id)">
+        </app-select>
+      </td>
+      <td><a (click)="brandNavigate(item.brandName)">{{item.brandName}}</a></td>
+      <td>{{item.value | number:'.2'}}</td>
+      <td>
+        <app-number-edit-switcher
+          [value]="item.currentAmount"
+          (valueChange)="updateRow({currentAmount: $event}, item)">
+          {{item.currentAmount | number:'.2'}}
+        </app-number-edit-switcher>
+      </td>
+      <td>{{item.createdUtc | date:'M/d/yy' }}</td>
+      <td>
+        <app-number-edit-switcher
+          [value]="item.number"
+          (valueChange)="updateRow({number: $event}, item)">
+          {{item.number}}
+        </app-number-edit-switcher>
+      </td>
+      <td>
+        <app-number-edit-switcher
+          [value]="item.pinCode"
+          (valueChange)="updateRow({pinCode: $event}, item)">
+          {{item.pinCode}}
+        </app-number-edit-switcher>
+      </td>
+      <td>
+        <app-date-edit-switcher
+          [value]="item.expiration"
+          (valueChange)="updateRow({expiration: $event}, item)">
+          {{item.expiration | date:'M/d/yy'}}
+        </app-date-edit-switcher>
+      </td>
+      <td>{{item.vendorName}}</td>
+      <td>{{item.buyerName}}</td>
+      <td>
+        <app-comment [comment]="item.comment"></app-comment>
+      </td>
+    </tr>
+
+    <tr [nzExpand]="isCardExpanded(item.id)" class="expand-row">
+      <td colspan="13" *ngIf="isCardExpanded(item.id) && detailCredential">
+        <app-card-row-template
+          [data]="item">
+        </app-card-row-template>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</nz-table>

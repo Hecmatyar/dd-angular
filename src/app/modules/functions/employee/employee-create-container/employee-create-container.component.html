@@ -1,0 +1,4 @@
+<app-employee-form
+  (submitForm)="onSubmit($event)"
+  [isLoading]="(employee$ | async)?.isLoading">
+</app-employee-form>

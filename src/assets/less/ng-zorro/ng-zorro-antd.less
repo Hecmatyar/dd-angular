@@ -1,0 +1,137 @@
+.ant-table-pagination.ant-pagination {
+  margin-right: 1rem;
+}
+
+.ant-spin-container > div,
+.ant-spin-nested-loading,
+.ant-table-wrapper,
+nz-spin {
+  height: 100%;
+}
+
+.ant-spin-container {
+  height: calc(100% - 56px);
+}
+
+.ant-table-content,
+.ant-table-body {
+  height: 100%;
+}
+
+.ant-table {
+  height: 100%;
+  overflow: auto;
+
+  &-thead > tr > th {
+    position: sticky !important;
+    top: 0;
+    z-index: 2;
+    padding: 6px;
+
+    &.ant-table-selection-column,
+    &:first-child {
+      z-index: 3;
+    }
+  }
+
+  &-thead > tr > th,
+  &-tbody > tr > td {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    //padding-top: 6px !important;
+    //padding-bottom: 6px !important;
+
+    &.ant-table-selection-column {
+      min-width: 40px;
+      width: 40px;
+    }
+  }
+}
+
+.ant-pagination-prev > a,
+.ant-pagination-next > a {
+  display: flex;
+  align-items: center;
+  color: @link-color;
+
+  &:before,
+  &:after {
+    font-size: 14px;
+  }
+
+  .anticon {
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  .anticon-right {
+    margin-left: .25rem;
+  }
+
+  .anticon-left {
+    margin-right: .25rem;
+  }
+}
+
+.ant-pagination-prev > a {
+  margin-right: 12px;
+}
+
+.ant-pagination-prev > a:after {
+  content: "Back";
+}
+
+.ant-pagination-next > a:before {
+  content: "Next";
+}
+
+.anticon {
+  &:before {
+    font-family: "feather", serif;
+    font-size: 1rem;
+    line-height: normal;
+    display: inline-block;
+  }
+
+  &.anticon-down > svg,
+  &.anticon-calendar > svg,
+  &.anticon-check-circle-fill > svg,
+  &.anticon-close-circle-fill > svg {
+    display: none;
+  }
+
+  &.anticon-calendar:before {
+    content: "\e83a";
+  }
+
+  &.anticon-down:before {
+    content: "\e842";
+  }
+
+  &.anticon-check-circle-fill:before {
+    content: "\e83f";
+  }
+
+  &.anticon-close-circle-fill:before {
+    content: "\e8f6";
+  }
+}
+
+.ant-input-number {
+  width: 100%;
+}
+
+.ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  border: .2em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+
+  & > i {
+    display: none;
+  }
+}

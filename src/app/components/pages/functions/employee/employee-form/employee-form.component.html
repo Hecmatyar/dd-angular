@@ -1,0 +1,61 @@
+<app-base-form-template [isLoading]="isLoading">
+  <ng-container content>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Name*'"
+        [isError]="form.get('name').dirty && !form.get('name').valid">
+        <app-input [parentForm]="form" [controlName]="'name'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Last name*'"
+        [isError]="form.get('lastName').dirty && !form.get('lastName').valid">
+        <app-input [parentForm]="form" [controlName]="'lastName'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Login*'"
+        [isError]="form.get('login').dirty && !form.get('login').valid">
+        <app-input [parentForm]="form" [controlName]="'login'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'E-mail*'"
+        [isError]="form.get('email').dirty && !form.get('email').valid">
+        <app-input [parentForm]="form" [controlName]="'email'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Phone*'"
+        [isError]="form.get('telephone').dirty && !form.get('telephone').valid">
+        <app-input [parentForm]="form" [controlName]="'telephone'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="line">
+      <app-select-group
+        [parentForm]="form"
+        [controlName]="'roles'"
+        [selectableItems]="getSelectable((selectableItems$ | async))"
+        [emptyItem]="{key: null}"
+        [selectArray]="selectRoleArray"
+        [title]="'Adding roles'"
+        (update)="updateAccessLevel()">
+      </app-select-group>
+    </div>
+    <app-access-builder
+      #accessBuilder
+      *ngIf="(accessLevelMap$ | async).content"
+      [isLoading]="(rolesAccessLevelMap$ | async).isLoading"
+      [accessLevelSelected]="employee?.allAllowed"
+      [accessLevelDisabled]="(rolesAccessLevelMap$ | async).content"
+      [accessLevel]="(accessLevelMap$ | async).content">
+    </app-access-builder>
+  </ng-container>
+  <ng-container footer>
+    <app-form-footer-action [disabled]="!accessBuilder" [backPath]="backPath" (apply)="applyForm()"></app-form-footer-action>
+  </ng-container>
+</app-base-form-template>

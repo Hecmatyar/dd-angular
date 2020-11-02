@@ -1,0 +1,66 @@
+<nz-table
+  class="expand-table"
+  [nzSize]="'small'"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="false"
+  [nzHideOnSinglePage]="false"
+  [nzData]="state?.items"
+  [nzTotal]="state?.totalItems"
+  [nzLoadingDelay]="0"
+  [nzLoading]="state?.isLoading"
+  [(nzPageIndex)]="paged.page"
+  [(nzPageSize)]="paged.pageSize"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)">
+  <thead nzSingleSort (nzSortChange)="onSort($event)">
+  <tr>
+    <th nzWidth="50px" nzLeft="0" *ngIf="detailCredential"></th>
+    <th nzShowSort [nzSortKey]="'status'">Status</th>
+    <th nzShowSort [nzSortKey]="'date'">Date</th>
+    <th nzShowSort [nzSortKey]="'number'">Number</th>
+    <th nzShowSort [nzSortKey]="'paymentType'">Withdraw method</th>
+    <th nzShowSort [nzSortKey]="'buyer'">Buyer</th>
+    <th nzShowSort [nzSortKey]="'value'">Value</th>
+    <th nzShowSort [nzSortKey]="'current'">Current $</th>
+    <th nzShowSort [nzSortKey]="'payOut'">Pay out</th>
+    <th nzShowSort [nzSortKey]="'paid'">Paid</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of (state?.items || []); trackBy: trackByFn">
+    <tr>
+      <td nzShowExpand nzLeft="0"
+          *ngIf="detailCredential"
+          [nzExpand]="isCardExpanded(item.id)"
+          (nzExpandChange)="onExpandCard(item.id)"></td>
+      <td>
+        <app-select
+          class="select-status"
+          [data]="item.status"
+          [options]="getStatusEnum(item)"
+          [disabled]="!statusCredential || item.status === orderStatus.Draft"
+          (changeValue)="updateStatus($event, item.id)">
+        </app-select>
+      </td>
+      <td>{{item.date | date:'M/d/yy'}}</td>
+      <td>{{item.number}}</td>
+      <td>{{item.paymentType}}</td>
+      <td><a (click)="onNavigate(item.buyer?.name)">{{item.buyer?.name}}</a></td>
+      <td>$ {{item.value | number:'.2'}}</td>
+      <td>$ {{item.current | number:'.2'}}</td>
+      <td>$ {{item.payOut | number:'.2'}}</td>
+      <td>$ {{item.paid | number:'.2'}}</td>
+      <td>
+        <app-comment [comment]="item.comment"></app-comment>
+      </td>
+    </tr>
+
+    <tr [nzExpand]="isCardExpanded(item.id)" class="expand-row">
+      <td colspan="13" *ngIf="isCardExpanded(item.id) && detailCredential">
+        <app-bulk-orders-row-template [data]="item"></app-bulk-orders-row-template>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</nz-table>

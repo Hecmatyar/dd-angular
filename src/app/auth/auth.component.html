@@ -1,0 +1,51 @@
+<div class="auth-background">
+  <div class="auth-form">
+    <form [formGroup]="authForm">
+      <h3>Hello!</h3>
+
+      <div *ngIf="(authState | async).errorMessage" class="alert auth-message">
+        {{(authState | async).errorMessage}}
+      </div>
+
+      <div class="label" [class.alert]="valid('login')">Login</div>
+      <label class="input">
+        <input
+          [type]="'text'"
+          [class.alert]="valid('login')"
+          formControlName="login"
+          nz-input
+          placeholder="login"/>
+      </label>
+
+      <div class="label" [class.alert]="valid('password')">Password</div>
+      <label class="input">
+        <nz-input-group [nzSuffix]="suffixTemplate">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            [class.alert]="valid('password')"
+            nz-input
+            placeholder="password"
+            formControlName="password"
+          />
+        </nz-input-group>
+        <ng-template #suffixTemplate>
+          <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+             (click)="passwordVisible = !passwordVisible"></i>
+        </ng-template>
+      </label>
+
+      <div class="submit">
+        <button
+          class="ant-btn-success"
+          nz-button
+          [nzLoading]="isLoading"
+          (click)="submit($event)"
+          [disabled]="isDisabled">
+          <i nz-icon type="poweroff"></i>
+          Login
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

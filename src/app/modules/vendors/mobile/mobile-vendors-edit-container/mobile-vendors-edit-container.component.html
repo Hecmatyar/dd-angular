@@ -1,0 +1,5 @@
+<app-mobile-vendors-form
+  (submitForm)="onSubmit($event)"
+  [isLoading]="(vendor$ | async).isLoading"
+  [vendor]="(vendorContent$ | async)">
+</app-mobile-vendors-form>

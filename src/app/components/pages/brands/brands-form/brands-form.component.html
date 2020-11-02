@@ -1,0 +1,114 @@
+<app-base-form-template [isLoading]="isLoading">
+  <ng-container content>
+    <div class="base-line">
+      <app-base-filter-template
+        class="span-2"
+        [text]="'Brand name'"
+        [isError]="isInvalid('name')">
+        <app-input [parentForm]="form" [controlName]="'name'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Logo image*'">
+        <app-input-file
+          [parentForm]="form"
+          [controlName]="'image'"
+          [text]="brand?.image"
+          [accept]="'.png, .jpg, .jpeg, .GIF, .WebP'"
+          [id]="'image'">
+        </app-input-file>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'Brand type*'"
+        [isError]="isInvalid('type')">
+        <app-nz-select [parentForm]="form" [controlName]="'type'" [items]="brandTypeItems"></app-nz-select>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Buying %'"
+        [isError]="isInvalid('commissionBuy')">
+        <app-input [parentForm]="form" [controlName]="'commissionBuy'"></app-input>
+      </app-base-filter-template>
+      <app-base-filter-template
+        [text]="'Bulk buying %'"
+        [isError]="isInvalid('commissionBulkBuy')">
+        <app-input [parentForm]="form" [controlName]="'commissionBulkBuy'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Selling'"
+        [isError]="isInvalid('commissionSell')">
+        <app-input [parentForm]="form" [controlName]="'commissionSell'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Max card value, $*'"
+        [isError]="isInvalid('maxAmount')">
+        <app-input [parentForm]="form" [controlName]="'maxAmount'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'URL website'"
+        [isError]="isInvalid('url')">
+        <app-input [parentForm]="form" [controlName]="'url'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Phone'"
+        [isError]="isInvalid('phone')">
+        <app-input [parentForm]="form" [controlName]="'phone'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Digit number*'"
+        [isError]="isInvalid('numberLength')">
+        <app-input [parentForm]="form" [controlName]="'numberLength'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <app-base-filter-template
+        [text]="'Digit pin-code*'"
+        [isError]="isInvalid('pinCodeLength')">
+        <app-input [parentForm]="form" [controlName]="'pinCodeLength'"></app-input>
+      </app-base-filter-template>
+    </div>
+    <div class="base-line">
+      <div class="span-2">
+        <app-base-filter-template
+          [text]="'Comment'">
+          <app-text-area [parentForm]="form" [controlName]="'comment'"></app-text-area>
+        </app-base-filter-template>
+      </div>
+    </div>
+    <div class="line">
+      <app-select-group
+        [parentForm]="form"
+        [controlName]="'categories'"
+        [selectableItems]="categoryItems"
+        [emptyItem]="{key: null}"
+        [selectArray]="selectCategoriesArray"
+        [title]="'ADDING CATEGORIES*'">
+      </app-select-group>
+    </div>
+    <div class="line">
+      <app-select-group
+        [parentForm]="form"
+        [controlName]="'relatedBrands'"
+        [selectableItems]="brandsItems"
+        [emptyItem]="{key: null}"
+        [selectArray]="selectBrandsArray"
+        [title]="'ADDING RELATED BRANDS'">
+      </app-select-group>
+    </div>
+  </ng-container>
+  <ng-container footer>
+    <app-form-footer-action [backPath]="backPath" (apply)="applyForm()"></app-form-footer-action>
+  </ng-container>
+</app-base-form-template>

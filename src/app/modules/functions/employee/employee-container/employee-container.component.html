@@ -1,0 +1,23 @@
+<div class="cards dynamic-table">
+  <header class="dynamic-table__header">
+    <app-employee-filter
+      [createCredential]="(createCredential$ | async)">
+    </app-employee-filter>
+  </header>
+  <main class="dynamic-table__body">
+    <app-employee-table
+      [editCredential]="(editCredential$ | async)"
+      [banCredential]="(banCredential$ | async)"
+      [state]="employeeState$ | async">
+    </app-employee-table>
+  </main>
+  <footer class="dynamic-table__footer">
+    <app-download-file
+      [title]="'CSV'"
+      [request]="loadCsv.bind(this)"
+      [name]="'employee_list'"
+      [type]="'csv'"
+      [filter]="(employeeState$ | async).filter">
+    </app-download-file>
+  </footer>
+</div>

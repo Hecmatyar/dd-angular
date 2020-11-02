@@ -1,0 +1,14 @@
+<div class="mobile-vendors dynamic-table">
+  <header class="dynamic-table__header">
+    <app-mobile-vendors-filter></app-mobile-vendors-filter>
+  </header>
+  <main class="dynamic-table__body">
+    <app-mobile-vendors-table
+      [detailCredential]="(detailCredential$ | async)"
+      [editCredential]="(editCredential$ | async)"
+      [banCredential]="(banCredential$ | async)"
+      [moreDetailCredential]="(moreDetailCredential$ | async)"
+      [state]="mobileVendorsState$ | async">
+    </app-mobile-vendors-table>
+  </main>
+</div>

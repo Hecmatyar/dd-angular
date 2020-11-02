@@ -1,0 +1,18 @@
+<div class="cards-export">
+  <span>Export:</span>
+  <app-select
+    *ngIf="vendorList"
+    [data]="selectedVendor"
+    [options]="getVendorsList()"
+    class="export-type"
+    (changeValue)="onSelectVendor($event)">
+  </app-select>
+  <button nz-button
+          nzBlock
+          nzType="success"
+          (click)="createBulkOrder()"
+          [nzLoading]="isLoading"
+          [disabled]="!createOrderCredential || !selectedVendor || !cards.length">
+    Create bulk order
+  </button>
+</div>

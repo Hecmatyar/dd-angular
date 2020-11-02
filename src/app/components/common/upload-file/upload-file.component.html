@@ -1,0 +1,15 @@
+<div class="upload">
+  <label
+    for="file"
+    class="ant-btn ant-btn-primary"
+    [class.disabled]="disabled">
+    {{title}}
+  </label>
+  <input
+    id="file"
+    type="file"
+    class="file-select"
+    [attr.disabled]="disabled ? '' : null"
+    [accept]="accept"
+    (change)="onUpload($event.target.files[0])">
+</div>

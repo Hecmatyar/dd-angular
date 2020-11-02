@@ -1,0 +1,19 @@
+<div class="form">
+<!--  <header class="form-header">-->
+    <ng-content select="[header]"></ng-content>
+<!--  </header>-->
+  <main class="form-content">
+    <!-- content -->
+    <ng-content select="[content]"></ng-content>
+    <!-- /content -->
+
+    <div class="spinner" *ngIf="isLoading">
+      <nz-spin [nzSpinning]="isLoading"></nz-spin>
+    </div>
+  </main>
+  <footer class="form-footer">
+    <!-- footer -->
+    <ng-content select="[footer]"></ng-content>
+    <!-- /footer -->
+  </footer>
+</div>

@@ -1,0 +1,48 @@
+<div class="app-navigation">
+  <div class="app__user">
+    <div class="app__user-name">Mercedes Ali</div>
+    <dl class="app__user-info">
+      <dt class="app__user-label">Your login:</dt>
+      <dd class="app__user-login">MercedesAli</dd>
+    </dl>
+  </div>
+
+  <ul nz-menu [nzMode]="'inline'" [nzTheme]="'dark'">
+    <ng-container *ngFor="let navigationItem of navigation">
+      <li nz-menu-item
+          *ngIf="!navigationItem.children?.length && isVisible(navigationItem.accessLevel)"
+          [routerLinkActive]="'ant-menu-item-selected'">
+        <a title
+           [routerLink]="'/' + navigationItem.routerLink"
+           [routerLinkActive]="'active'">
+          {{navigationItem.title}}
+        </a>
+      </li>
+      <!-- If has children -->
+      <li nz-submenu
+          *ngIf="navigationItem.children?.length && isVisible(navigationItem.accessLevel)">
+        <a title [routerLink]="null">
+          {{navigationItem.title}}
+        </a>
+        <ul>
+          <ng-container *ngFor="let childrenItem of navigationItem.children">
+            <li *ngIf="isVisible(navigationItem.accessLevel)"
+                nz-menu-item
+                [routerLinkActive]="'ant-menu-item-selected'">
+              <a title
+                 [routerLink]="'/' + childrenItem.routerLink"
+                 [routerLinkActive]="'active'">
+                {{childrenItem.title}}
+              </a>
+            </li>
+          </ng-container>
+
+        </ul>
+      </li>
+      <!-- /If has children -->
+    </ng-container>
+  </ul>
+
+  <!--  <ng-content></ng-content>-->
+</div>
+

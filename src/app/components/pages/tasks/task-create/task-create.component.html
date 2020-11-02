@@ -1,0 +1,49 @@
+<nz-modal
+  *ngIf="visible"
+  [nzVisible]="visible"
+  [nzFooter]="null"
+  nzWidth="790"
+  (nzOnCancel)="handleCancel()"
+>
+  <form nz-form [formGroup]="form" *ngIf="form">
+    <header>
+      <div class="title">Create New Task</div>
+    </header>
+
+    <main>
+      <div class="subtitle"><div>Role & Priority</div><span></span></div>
+
+      <div class="label">
+        Task Role
+        <nz-select formControlName="role">
+          <nz-option *ngFor="let item of role" [nzValue]="item.key" [nzLabel]="item.value"></nz-option>
+        </nz-select>
+      </div>
+
+      <div class="label">
+        Priority
+        <nz-select formControlName="priority">
+          <nz-option *ngFor="let item of priorities" [nzValue]="item.key" [nzLabel]="item.value"></nz-option>
+        </nz-select>
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="subtitle"><div>Additional Text</div><span></span></div>
+
+      <label>
+        <textarea
+          nz-input
+          placeholder="Example"
+          formControlName="text"></textarea>
+      </label>
+
+      <app-button
+        [type]="buttonTypes.BLUE"
+        [text]="'Create task'"
+        (click)="handleOk()"
+      ></app-button>
+    </footer>
+  </form>
+</nz-modal>

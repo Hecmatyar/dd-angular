@@ -1,0 +1,14 @@
+<div class="text-edit">
+  <div class="content" (dblclick)="toggleFormat()" *ngIf="!isEdit">
+    <ng-content></ng-content>
+  </div>
+  <div class="editable-content" *ngIf="isEdit">
+    <nz-date-picker
+      [nzFormat]="'short'"
+      [ngModel]="value"
+      [nzAutoFocus]="true"
+      (ngModelChange)="onChange($event)">
+    </nz-date-picker>
+  </div>
+</div>
+

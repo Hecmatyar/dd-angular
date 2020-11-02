@@ -1,0 +1,9 @@
+<label [formGroup]="parentForm">
+  <textarea
+    nz-input
+    [placeholder]="placeholder"
+    [attr.disabled]="disabled ? '' : null"
+    [formControlName]="controlName"
+    [nzAutosize]="{ minRows: 6, maxRows: 8 }">
+  </textarea>
+</label>

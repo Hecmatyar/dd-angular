@@ -1,0 +1,53 @@
+<div class="order-builder">
+  <ng-container>
+    <div class="title">BRAND</div>
+    <div class="title">NUMBER</div>
+    <div class="title">PIN-CODE</div>
+    <div class="title">EXPIRATION</div>
+    <div class="title">VALUE</div>
+    <div class="title">%</div>
+    <div class="title">PAY OUT</div>
+    <div class="title">ORDER DATE</div>
+    <div class="title"></div>
+    <div class="title"></div>
+  </ng-container>
+  <ng-container *ngFor="let card of cards" class="excluded">
+    <div class="cell" [class.excluded]="!isCardSelected(card.id)">{{card.brand.name}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.id)">{{card.number || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.id)">{{card.pinCode || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.id)">{{(card.expiration | date:'M/d/yy hh:m') || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.id)">{{card.amount || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.id)">{{card.buyPercent || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.id)">{{card.buyPrice || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.id)">{{(card.orderDate | date:'M/d/yy hh:m') || '-'}}</div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.id)"></div>
+    <div class="cell" [class.excluded]="!isCardSelected(card.id)">
+      <div class="toggle-card">
+        <app-add-icon
+          *ngIf="!isCardSelected(card.id)"
+          (click)="toggleCard(card.id)">
+        </app-add-icon>
+        <app-delete-icon
+          *ngIf="isCardSelected(card.id)"
+          (click)="toggleCard(card.id)">
+        </app-delete-icon>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container>
+    <div class="total">Total cards:</div>
+    <div class="total">{{totalCards}}</div>
+    <div class="total">Total value:</div>
+    <div class="total">{{totalCurrent | number:'.2'}}</div>
+    <div></div>
+    <div class="total">Total adjustment:</div>
+    <div class="total">{{totalPaidUs | number:'.2'}}</div>
+    <div></div>
+    <div></div>
+  </ng-container>
+
+  <div class="spinner" *ngIf="isLoading">
+    <nz-spin [nzSpinning]="isLoading"></nz-spin>
+  </div>
+</div>
+

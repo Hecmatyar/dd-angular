@@ -1,0 +1,19 @@
+<div class="transactions dynamic-table">
+  <header class="dynamic-table__header">
+    <app-transactions-filter></app-transactions-filter>
+  </header>
+  <main class="dynamic-table__body">
+    <app-transactions-table
+      (selectedRows)="onChangeSelectedRow($event)"
+      [statusCredential]="(statusCredential$ | async)"
+      [state]="transactionState$ | async">
+    </app-transactions-table>
+  </main>
+  <footer class="dynamic-table__footer">
+    <app-transactions-create
+      [createBulkCredential]="(createBulkCredential$ | async)"
+      [createMobileCredential]="(createMobileCredential$ | async)"
+      [createPartnerCredential]="(createPartnerCredential$ | async)">
+    </app-transactions-create>
+  </footer>
+</div>

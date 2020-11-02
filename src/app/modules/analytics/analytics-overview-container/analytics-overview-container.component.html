@@ -1,0 +1,12 @@
+<div class="bulk-orders dynamic-table">
+  <header class="dynamic-table__header no-padding">
+    <app-horizontal-menu [menuItems]="menuItems"></app-horizontal-menu>
+  </header>
+  <header class="dynamic-table__header no-padding">
+    <app-analytics-overview-filter></app-analytics-overview-filter>
+  </header>
+  <main class="content">
+    <app-analytics-overview-tables [state]="(state$ | async)"></app-analytics-overview-tables>
+  </main>
+</div>
+

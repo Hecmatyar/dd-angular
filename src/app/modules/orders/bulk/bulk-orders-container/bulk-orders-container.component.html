@@ -1,0 +1,12 @@
+ <div class="bulk-orders dynamic-table">
+  <header class="dynamic-table__header">
+    <app-bulk-orders-filter></app-bulk-orders-filter>
+  </header>
+  <main class="dynamic-table__body">
+    <app-bulk-orders-table
+      [detailCredential]="(detailCredential$ | async)"
+      [statusCredential]="(statusCredential$ | async)"
+      [state]="bulkOrderState$ | async">
+    </app-bulk-orders-table>
+  </main>
+</div>

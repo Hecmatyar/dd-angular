@@ -1,0 +1,40 @@
+<form [formGroup]="form" *ngIf="form; else spinner">
+  <div class="fields">
+    <h2>Bonus & Funds</h2>
+
+    <div class="fields-wrapper">
+      <label>
+        Bonus for reference code
+        <app-input [parentForm]="form" [controlName]="'referralBonus'"></app-input>
+      </label>
+
+      <h2>Checkout</h2>
+
+      <label>
+        Bonus pay, % from checkout
+        <app-input [parentForm]="form" [controlName]="'maxBonusPayPercent'"></app-input>
+      </label>
+
+      <h2>Cashback</h2>
+
+      <label formArrayName="cashBackValues" *ngFor="let item of formArray.controls; let i = index">
+        {{i + 1}} guarantee day, %
+        <input nz-input formControlName="{{i}}">
+      </label>
+    </div>
+  </div>
+
+  <div class="button">
+    <div class="button-place">
+      <app-button
+        [text]="'Save settings'"
+        [type]="buttonType.GREEN"
+        (clickEvent)="onSubmit()">
+      </app-button>
+    </div>
+  </div>
+</form>
+
+<ng-template #spinner>
+  <nz-spin class="spinner"></nz-spin>
+</ng-template>

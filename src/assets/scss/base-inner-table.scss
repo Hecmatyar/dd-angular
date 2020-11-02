@@ -1,0 +1,35 @@
+.inner-detail {
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+  grid-gap: 8px 10px;
+  padding-top: 20px;
+
+  .th {
+    font-size: 12px;
+    line-height: 14px;
+    color: #828282;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .td {
+    color: #000;
+    padding-bottom: 20px;
+  }
+}
+
+.row-span-2 {
+  grid-row: span 2;
+}
+
+.row-span-3 {
+  grid-row: span 3;
+}
+
+.span-3 {
+  grid-column: span 3;
+}
+
+.span-2 {
+  grid-column: span 2;
+}

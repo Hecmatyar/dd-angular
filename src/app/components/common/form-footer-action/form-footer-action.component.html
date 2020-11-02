@@ -1,0 +1,17 @@
+<div class="base-line">
+  <app-button
+    class="apply"
+    [text]="'Apply'"
+    [type]="buttonType.GREEN"
+    (clickEvent)="onApply()">
+  </app-button>
+  <app-button
+    class="cancel"
+    [text]="'Cancel'"
+    [type]="buttonType.RED"
+    [disabled]="disabled"
+    (clickEvent)="onCancel()">
+  </app-button>
+  <ng-content></ng-content>
+</div>
+
